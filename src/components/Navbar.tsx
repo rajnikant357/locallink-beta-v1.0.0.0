@@ -1,6 +1,6 @@
 import { Link } from "react-router-dom";
 import { Button } from "./ui/button";
-import { Globe, Bell, User } from "lucide-react";
+import { Bell, User, Settings } from "lucide-react";
 
 const Navbar = () => {
   return (
@@ -27,16 +27,24 @@ const Navbar = () => {
           </div>
 
           <div className="flex items-center gap-3">
-            <Button variant="ghost" size="icon" className="hidden md:flex">
-              <Globe className="h-5 w-5" />
-            </Button>
-            <Button variant="ghost" size="icon" className="hidden md:flex">
-              <Bell className="h-5 w-5" />
-            </Button>
-            <Button variant="ghost" size="icon" className="hidden md:flex">
-              <User className="h-5 w-5" />
-            </Button>
-            <Button>Sign In</Button>
+            <Link to="/settings">
+              <Button variant="ghost" size="icon" className="hidden md:flex">
+                <Settings className="h-5 w-5" />
+              </Button>
+            </Link>
+            <Link to="/notifications">
+              <Button variant="ghost" size="icon" className="hidden md:flex">
+                <Bell className="h-5 w-5" />
+              </Button>
+            </Link>
+            <Link to="/dashboard">
+              <Button variant="ghost" size="icon" className="hidden md:flex">
+                <User className="h-5 w-5" />
+              </Button>
+            </Link>
+            <Link to="/auth">
+              <Button>Sign In</Button>
+            </Link>
           </div>
         </div>
       </div>
