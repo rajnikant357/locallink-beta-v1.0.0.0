@@ -30,21 +30,21 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
 
   const signIn = async (email: string, password: string): Promise<boolean> => {
     // Demo credentials
-    if (email === "id-user" && password === "user123") {
+    if (email === "user@gmail.com" && password === "user123") {
       const userData = {
         id: "user-1",
         name: "John Doe",
-        email: "id-user",
+        email: "user@gmail.com",
         type: "customer" as const,
       };
       setUser(userData);
       localStorage.setItem("locallink_user", JSON.stringify(userData));
       return true;
-    } else if (email === "id-provider" && password === "provider123") {
+    } else if (email === "provider@gmail.com" && password === "provider123") {
       const userData = {
         id: "provider-1",
         name: "Rajesh Kumar",
-        email: "id-provider",
+        email: "provider@gmail.com",
         type: "provider" as const,
       };
       setUser(userData);

@@ -229,10 +229,14 @@ const Home = () => {
             Join LocalLink to find more clients, manage your schedule, and grow your business
           </p>
           <div className="flex gap-4 justify-center">
-            <Button variant="secondary" size="lg">Learn More</Button>
-            <Button variant="outline" size="lg" className="border-white text-white hover:bg-white hover:text-primary">
-              Register Now
-            </Button>
+            <Link to="/learn-more">
+              <Button variant="secondary" size="lg">Learn More</Button>
+            </Link>
+            <Link to="/register-provider">
+              <Button size="lg" className="bg-blue-600 text-white hover:bg-blue-700">
+                Register Now
+              </Button>
+            </Link>
           </div>
         </div>
       </section>
