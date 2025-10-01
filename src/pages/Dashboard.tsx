@@ -1,15 +1,25 @@
-import { useState } from "react";
-import { Link } from "react-router-dom";
+import { useEffect } from "react";
+import { Link, useNavigate } from "react-router-dom";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import { Card, CardContent } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
-import { Calendar, Star, Clock, MapPin, MessageSquare, TrendingUp, DollarSign } from "lucide-react";
+import { Calendar, Star, Clock, MapPin, MessageSquare, TrendingUp, DollarSign, Users, Briefcase } from "lucide-react";
+import { useAuth } from "@/contexts/AuthContext";
 
 const Dashboard = () => {
-  const [userType] = useState<"customer" | "provider">("customer");
+  const { user, isAuthenticated } = useAuth();
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    if (!isAuthenticated) {
+      navigate("/auth");
+    }
+  }, [isAuthenticated, navigate]);
+
+  if (!user) return null;
 
   const bookings = [
     {
@@ -45,12 +55,20 @@ const Dashboard = () => {
     },
   ];
 
-  const stats = [
+  const customerStats = [
     { label: "Total Bookings", value: "12", icon: Calendar, color: "text-primary" },
     { label: "Completed", value: "10", icon: Clock, color: "text-green-500" },
     { label: "Reviews Given", value: "8", icon: Star, color: "text-yellow-500" },
-    { label: "Total Spent", value: "₹5,400", icon: DollarSign, color: "text-blue-500" },
   ];
+
+  const providerStats = [
+    { label: "Total Jobs", value: "47", icon: Briefcase, color: "text-primary" },
+    { label: "Completed", value: "42", icon: Clock, color: "text-green-500" },
+    { label: "Total Clients", value: "28", icon: Users, color: "text-blue-500" },
+    { label: "Total Earned", value: "₹32,400", icon: DollarSign, color: "text-green-600" },
+  ];
+
+  const stats = user.type === "customer" ? customerStats : providerStats;
 
   return (
     <div className="min-h-screen flex flex-col">
@@ -59,8 +77,11 @@ const Dashboard = () => {
       <div className="flex-1 py-12 bg-muted/30">
         <div className="container mx-auto px-4">
           <div className="mb-8">
-            <h1 className="text-4xl font-bold mb-2">My Dashboard</h1>
-            <p className="text-muted-foreground">Welcome back, John Doe</p>
+            <h1 className="text-4xl font-bold mb-2">
+              {user.type === "customer" ? "My Dashboard" : "Provider Dashboard"}
+            </h1>
+            <p className="text-muted-foreground">Welcome back, {user.name}</p>
+            <Badge className="mt-2">{user.type === "customer" ? "Customer" : "Service Provider"}</Badge>
           </div>
 
           {/* Stats */}
@@ -85,9 +106,19 @@ const Dashboard = () => {
           {/* Main Content */}
           <Tabs defaultValue="bookings" className="space-y-6">
             <TabsList>
-              <TabsTrigger value="bookings">My Bookings</TabsTrigger>
-              <TabsTrigger value="reviews">My Reviews</TabsTrigger>
-              <TabsTrigger value="favorites">Favorites</TabsTrigger>
+              {user.type === "customer" ? (
+                <>
+                  <TabsTrigger value="bookings">My Bookings</TabsTrigger>
+                  <TabsTrigger value="reviews">My Reviews</TabsTrigger>
+                  <TabsTrigger value="favorites">Favorites</TabsTrigger>
+                </>
+              ) : (
+                <>
+                  <TabsTrigger value="bookings">Job Requests</TabsTrigger>
+                  <TabsTrigger value="reviews">Client Reviews</TabsTrigger>
+                  <TabsTrigger value="favorites">My Schedule</TabsTrigger>
+                </>
+              )}
             </TabsList>
 
             <TabsContent value="bookings" className="space-y-4">

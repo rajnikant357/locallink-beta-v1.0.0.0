@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
@@ -6,9 +6,11 @@ import { Label } from "@/components/ui/label";
 import { Card, CardContent } from "@/components/ui/card";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { toast } from "@/hooks/use-toast";
+import { useAuth } from "@/contexts/AuthContext";
 
 const Auth = () => {
   const navigate = useNavigate();
+  const { signIn, signUp, isAuthenticated } = useAuth();
   const [isLoading, setIsLoading] = useState(false);
   
   const [signInData, setSignInData] = useState({ email: "", password: "" });
@@ -16,22 +18,36 @@ const Auth = () => {
     name: "", 
     email: "", 
     password: "", 
-    confirmPassword: "" 
+    confirmPassword: "",
+    userType: "customer" as "customer" | "provider"
   });
+
+  useEffect(() => {
+    if (isAuthenticated) {
+      navigate("/dashboard");
+    }
+  }, [isAuthenticated, navigate]);
 
   const handleSignIn = async (e: React.FormEvent) => {
     e.preventDefault();
     setIsLoading(true);
 
-    // Simulate API call
-    setTimeout(() => {
+    const success = await signIn(signInData.email, signInData.password);
+    
+    if (success) {
       toast({
         title: "Welcome back!",
         description: "You have successfully signed in.",
       });
-      setIsLoading(false);
       navigate("/dashboard");
-    }, 1000);
+    } else {
+      toast({
+        title: "Invalid credentials",
+        description: "Please check your email and password.",
+        variant: "destructive",
+      });
+    }
+    setIsLoading(false);
   };
 
   const handleSignUp = async (e: React.FormEvent) => {
@@ -48,15 +64,21 @@ const Auth = () => {
 
     setIsLoading(true);
 
-    // Simulate API call
-    setTimeout(() => {
+    const success = await signUp(
+      signUpData.name,
+      signUpData.email,
+      signUpData.password,
+      signUpData.userType
+    );
+
+    if (success) {
       toast({
         title: "Account created!",
         description: "Your account has been created successfully.",
       });
-      setIsLoading(false);
       navigate("/dashboard");
-    }, 1000);
+    }
+    setIsLoading(false);
   };
 
   return (
@@ -118,6 +140,19 @@ const Auth = () => {
 
               <TabsContent value="signup">
                 <form onSubmit={handleSignUp} className="space-y-4">
+                  <div>
+                    <Label htmlFor="signup-usertype">I am a</Label>
+                    <select
+                      id="signup-usertype"
+                      className="flex h-10 w-full rounded-md border border-input bg-background px-3 py-2 text-sm ring-offset-background focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2"
+                      value={signUpData.userType}
+                      onChange={(e) => setSignUpData({...signUpData, userType: e.target.value as "customer" | "provider"})}
+                    >
+                      <option value="customer">Customer</option>
+                      <option value="provider">Service Provider</option>
+                    </select>
+                  </div>
+
                   <div>
                     <Label htmlFor="signup-name">Full Name</Label>
                     <Input
