@@ -12,7 +12,7 @@ const Footer = () => {
               <span style={{color: '#184bb8ff' }}>Local</span><span style={{ color: '#b379ffff' }}>Link</span>
             </span>
             <p className="text-gray-300 text-sm leading-relaxed">
-              Connecting you with trusted local service providers in Sikandarpur, Ballia and beyond.
+              Connecting you with trusted local service providers in your area.
             </p>
             <div className="flex gap-3 mt-4">
               <a href="#" className="hover:text-primary transition-colors">
@@ -111,11 +111,11 @@ const Footer = () => {
               </li>
               <li className="flex items-center gap-2 text-gray-300">
                 <Phone className="h-4 w-4" />
-                +91 9876543210
+                +91 7084202503
               </li>
               <li className="text-gray-300">
                 <div className="italic">LocalLink Office,</div>
-                <div>Main Road, Sikandarpur,</div>
+                <div>Main Road, Dadar,</div>
                 <div>Ballia, Uttar Pradesh</div>
               </li>
             </ul>
@@ -124,7 +124,6 @@ const Footer = () => {
 
         <div className="border-t border-gray-700 mt-8 pt-6 text-center text-sm text-gray-400">
           <p>© 2025 LocalLink. All rights reserved.</p>
-          <p className="mt-1">Available in: Sikandarpur, Ballia, and surrounding areas</p>
         </div>
       </div>
     </footer>

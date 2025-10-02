@@ -63,7 +63,7 @@ const Contact = () => {
                     <div>
                       <h3 className="font-semibold mb-1">Office</h3>
                       <p className="text-sm text-muted-foreground">LocalLink Office</p>
-                      <p className="text-sm text-muted-foreground">Main Road, Sikandarpur</p>
+                      <p className="text-sm text-muted-foreground">Main Road, Dadar</p>
                       <p className="text-sm text-muted-foreground">Ballia, Uttar Pradesh</p>
                     </div>
                   </div>
@@ -112,7 +112,7 @@ const Contact = () => {
                       <label htmlFor="phone" className="block text-sm font-medium mb-2">
                         Phone Number
                       </label>
-                      <Input id="phone" type="tel" placeholder="+91 9876543210" />
+                      <Input id="phone" type="tel" placeholder="Your Phone number" />
                     </div>
 
                     <div>
