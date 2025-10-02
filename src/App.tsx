@@ -33,7 +33,7 @@ const App = () => (
       <AuthProvider>
         <Toaster />
         <Sonner />
-        <BrowserRouter>
+  <BrowserRouter basename="/lovable-locallink">
           <Routes>
             <Route path="/" element={<Home />} />
             <Route path="/categories" element={<Categories />} />

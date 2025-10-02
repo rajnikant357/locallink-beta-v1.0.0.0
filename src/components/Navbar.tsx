@@ -30,7 +30,7 @@ const Navbar = () => {
       <div className="container mx-auto px-4">
         <div className="flex h-16 items-center justify-between">
           <Link to="/" className="flex items-center text-2xl font-bold gap-2">
-            <img src="/favicon_4.png" alt="Logo Icon" className="h-8 w-8 rounded-full" style={{ border: '0px solid #60a5fa', boxShadow: '0 0 8px 2px #60a5fa55', backdropFilter: 'blur(2px)' }} />
+            <img src="/logo.png" alt="Logo Icon" className="h-8 w-8 rounded-full" style={{ border: '0px solid #60a5fa', boxShadow: '0 0 8px 2px #60a5fa55', backdropFilter: 'blur(2px)' }} />
             <span style={{ color: '#2563eb' }}>Local</span><span style={{ color: '#1e293b' }}>Link</span>
           </Link>
           
