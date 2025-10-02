@@ -1,4 +1,5 @@
 import Navbar from "@/components/Navbar";
+import ChatbotButton from "@/components/ChatbotButton";
 import Footer from "@/components/Footer";
 import { Mail, Phone, MapPin, Clock } from "lucide-react";
 import { Button } from "@/components/ui/button";
@@ -144,7 +145,9 @@ const Contact = () => {
         </div>
       </div>
 
-      <Footer />
+  <Footer />
+  {/* Chatbot Button only for Contact page */}
+  <ChatbotButton />
     </div>
   );
 };

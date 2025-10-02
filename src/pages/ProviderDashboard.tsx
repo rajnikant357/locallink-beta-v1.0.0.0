@@ -1,5 +1,6 @@
 import { Link, useNavigate } from "react-router-dom";
 import Navbar from "@/components/Navbar";
+import ChatbotButton from "@/components/ChatbotButton";
 import Footer from "@/components/Footer";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
@@ -95,7 +96,9 @@ const ProviderDashboard = () => {
           <div className="mb-8 flex flex-col md:flex-row items-start md:items-center gap-6">
             <ProfilePicture name={user.name} editable />
             <div className="flex-1">
-              <h1 className="text-4xl font-bold mb-2">Provider Dashboard</h1>
+              <span className="text-4xl font-bold mb-2">
+                <span style={{ color: '#2563eb' }}>Local</span><span style={{ color: '#1e293b' }}>Link</span>
+              </span>
               <p className="text-muted-foreground">Welcome back, {user.name}</p>
               <div className="flex items-center gap-2 mt-2">
                 <Badge>Service Provider</Badge>
@@ -743,7 +746,8 @@ const ProviderDashboard = () => {
         </div>
       </div>
 
-      <Footer />
+  <Footer />
+  <ChatbotButton />
     </div>
   );
 };

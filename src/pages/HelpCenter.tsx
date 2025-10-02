@@ -1,4 +1,5 @@
 import Navbar from "@/components/Navbar";
+import ChatbotButton from "@/components/ChatbotButton";
 import Footer from "@/components/Footer";
 import { Search, Book, Users, CreditCard, MessageSquare, Shield } from "lucide-react";
 import { Card, CardContent } from "@/components/ui/card";
@@ -122,9 +123,7 @@ const HelpCenter = () => {
                     <Button variant="secondary" size="lg">Contact Support</Button>
                   </Link>
                   <Link to="/faqs">
-                    <Button variant="outline" size="lg" className="border-white text-white hover:bg-white hover:text-primary">
-                      View FAQs
-                    </Button>
+                    <Button variant="secondary" size="lg">View FAQs</Button>
                   </Link>
                 </div>
               </CardContent>
@@ -133,7 +132,9 @@ const HelpCenter = () => {
         </section>
       </div>
 
-      <Footer />
+  <Footer />
+  {/* Chatbot Button only for HelpCenter page */}
+  <ChatbotButton />
     </div>
   );
 };

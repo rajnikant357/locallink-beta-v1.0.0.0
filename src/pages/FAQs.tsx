@@ -1,4 +1,5 @@
 import Navbar from "@/components/Navbar";
+import ChatbotButton from "@/components/ChatbotButton";
 import Footer from "@/components/Footer";
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion";
 
@@ -132,7 +133,9 @@ const FAQs = () => {
         </div>
       </div>
 
-      <Footer />
+  <Footer />
+  {/* Chatbot Button only for FAQs page */}
+  <ChatbotButton />
     </div>
   );
 };

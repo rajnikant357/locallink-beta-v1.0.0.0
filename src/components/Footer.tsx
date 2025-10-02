@@ -8,7 +8,9 @@ const Footer = () => {
         <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
           {/* About */}
           <div>
-            <h3 className="text-xl font-bold mb-4">LocalLink</h3>
+            <span className="text-2xl font-bold mb-4">
+              <span style={{ color: '#2563eb' }}>Local</span><span style={{ color: '#1e293b' }}>Link</span>
+            </span>
             <p className="text-gray-300 text-sm leading-relaxed">
               Connecting you with trusted local service providers in Sikandarpur, Ballia and beyond.
             </p>
@@ -58,9 +60,6 @@ const Footer = () => {
                 </Link>
               </li>
               <li>
-                <Link to="/payment-methods" className="text-gray-300 hover:text-primary transition-colors">
-                  Payment Methods
-                </Link>
               </li>
               <li>
                 <Link to="/learn-more" className="text-gray-300 hover:text-primary transition-colors">
