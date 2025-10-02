@@ -29,9 +29,8 @@ const Navbar = () => {
     <nav className="border-b bg-background sticky top-0 z-50">
       <div className="container mx-auto px-4">
         <div className="flex h-16 items-center justify-between">
-          <Link to="/" className="flex items-center text-2xl font-bold gap-2">
-            <img src="/logo.png" alt="Logo Icon" className="h-8 w-8 rounded-full" style={{ border: '0px solid #60a5fa', boxShadow: '0 0 8px 2px #60a5fa55', backdropFilter: 'blur(2px)' }} />
-            <span style={{ color: '#2563eb' }}>Local</span><span style={{ color: '#1e293b' }}>Link</span>
+          <Link to="/" className="flex items-center text-3xl font-bold">
+            <span style={{ color: '#184bb8ff' }}>Local</span><span style={{ color: '#b379ffff' }}>Link</span>
           </Link>
           
           <div className="hidden md:flex items-center gap-8">
