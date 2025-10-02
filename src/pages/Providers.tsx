@@ -4,6 +4,9 @@ import { Card, CardContent } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { Star, MapPin } from "lucide-react";
+import { useAuth } from "@/contexts/AuthContext";
+import { useNavigate } from "react-router-dom";
+import { toast } from "@/hooks/use-toast";
 
 const allProviders = [
   { name: "Rajesh Kumar", role: "Electrician", rating: 4.8, location: "Sikandarpur, 2.3 km", hourly: "₹500/hour", skills: ["Wiring", "Repairs", "Installation"] },
@@ -15,6 +18,18 @@ const allProviders = [
 ];
 
 const Providers = () => {
+  const { isAuthenticated } = useAuth();
+  const navigate = useNavigate();
+
+  const handleAuthRequired = () => {
+    toast({
+      title: "Authentication required",
+      description: "Please sign in to contact a provider.",
+      variant: "destructive",
+    });
+    navigate("/auth");
+  };
+
   return (
     <div className="min-h-screen flex flex-col">
       <Navbar />
@@ -68,7 +83,12 @@ const Providers = () => {
 
                   <div className="grid grid-cols-2 gap-2">
                     <Button variant="outline" size="sm">View Profile</Button>
-                    <Button size="sm">Contact</Button>
+                    <Button 
+                      size="sm"
+                      onClick={() => isAuthenticated ? null : handleAuthRequired()}
+                    >
+                      Contact
+                    </Button>
                   </div>
                 </CardContent>
               </Card>

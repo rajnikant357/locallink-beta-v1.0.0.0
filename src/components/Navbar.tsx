@@ -52,13 +52,13 @@ const Navbar = () => {
           </div>
 
           <div className="flex items-center gap-3">
+            <Link to="/settings">
+              <Button variant="ghost" size="icon" className="hidden md:flex">
+                <Settings className="h-5 w-5" />
+              </Button>
+            </Link>
             {isAuthenticated ? (
               <>
-                <Link to="/settings">
-                  <Button variant="ghost" size="icon" className="hidden md:flex">
-                    <Settings className="h-5 w-5" />
-                  </Button>
-                </Link>
                 <Link to="/notifications">
                   <Button variant="ghost" size="icon" className="hidden md:flex">
                     <Bell className="h-5 w-5" />
@@ -69,10 +69,6 @@ const Navbar = () => {
                     <User className="h-5 w-5" />
                   </Button>
                 </Link>
-                <Button onClick={handleSignOut} variant="outline">
-                  <LogOut className="h-4 w-4 mr-2" />
-                  Sign Out
-                </Button>
               </>
             ) : (
               <Link to="/auth">

@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { Link, useParams } from "react-router-dom";
+import { Link, useParams, useNavigate } from "react-router-dom";
 import { ChevronLeft, MapPin, Star, Filter } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
@@ -11,6 +11,8 @@ import { Slider } from "@/components/ui/slider";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
+import { useAuth } from "@/contexts/AuthContext";
+import { toast } from "@/hooks/use-toast";
 
 const providers = [
   {
@@ -41,8 +43,19 @@ const providers = [
 
 const CategoryDetail = () => {
   const { category } = useParams();
+  const { isAuthenticated } = useAuth();
+  const navigate = useNavigate();
   const [showFilters, setShowFilters] = useState(false);
   const categoryName = category?.charAt(0).toUpperCase() + category?.slice(1) || "Category";
+
+  const handleAuthRequired = () => {
+    toast({
+      title: "Authentication required",
+      description: "Please sign in to contact or book a provider.",
+      variant: "destructive",
+    });
+    navigate("/auth");
+  };
 
   return (
     <div className="min-h-screen flex flex-col">
@@ -239,8 +252,15 @@ const CategoryDetail = () => {
 
                           <div className="flex gap-2">
                             <Button variant="outline">View Profile</Button>
-                            <Button>Contact</Button>
-                            <Button variant="secondary">Book Now</Button>
+                            <Button onClick={() => isAuthenticated ? null : handleAuthRequired()}>
+                              Contact
+                            </Button>
+                            <Button 
+                              variant="secondary"
+                              onClick={() => isAuthenticated ? null : handleAuthRequired()}
+                            >
+                              Book Now
+                            </Button>
                           </div>
                         </div>
                       </div>

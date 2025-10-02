@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import { Card, CardContent } from "@/components/ui/card";
@@ -8,9 +8,25 @@ import { Label } from "@/components/ui/label";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { Switch } from "@/components/ui/switch";
 import { toast } from "@/hooks/use-toast";
-import { User, Bell, Lock, CreditCard, Globe } from "lucide-react";
+import { User, Bell, Lock, CreditCard, Globe, LogOut } from "lucide-react";
+import { useAuth } from "@/contexts/AuthContext";
+import { useNavigate } from "react-router-dom";
 
 const Settings = () => {
+  const { isAuthenticated, signOut } = useAuth();
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    if (!isAuthenticated) {
+      toast({
+        title: "Authentication required",
+        description: "Please sign in to access settings.",
+        variant: "destructive",
+      });
+      navigate("/auth");
+    }
+  }, [isAuthenticated, navigate]);
+
   const [profile, setProfile] = useState({
     name: "John Doe",
     email: "john@example.com",
@@ -43,6 +59,15 @@ const Settings = () => {
       title: "Preferences Saved",
       description: "Your notification preferences have been updated.",
     });
+  };
+
+  const handleSignOut = () => {
+    signOut();
+    toast({
+      title: "Signed out",
+      description: "You have been signed out successfully.",
+    });
+    navigate("/");
   };
 
   return (
@@ -302,6 +327,17 @@ const Settings = () => {
                 </Card>
               </TabsContent>
             </Tabs>
+
+            <div className="mt-8">
+              <Button 
+                onClick={handleSignOut} 
+                variant="outline" 
+                className="w-full"
+              >
+                <LogOut className="h-4 w-4 mr-2" />
+                Sign Out
+              </Button>
+            </div>
           </div>
         </div>
       </div>

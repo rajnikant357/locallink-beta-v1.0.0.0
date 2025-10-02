@@ -6,11 +6,12 @@ import { Card, CardContent } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
-import { Calendar, Star, Clock, MapPin, MessageSquare, TrendingUp, DollarSign, Users, Briefcase } from "lucide-react";
+import { Calendar, Star, Clock, MapPin, MessageSquare, TrendingUp, DollarSign, Users, Briefcase, LogOut } from "lucide-react";
 import { useAuth } from "@/contexts/AuthContext";
+import { toast } from "@/hooks/use-toast";
 
 const Dashboard = () => {
-  const { user, isAuthenticated } = useAuth();
+  const { user, isAuthenticated, signOut } = useAuth();
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -18,6 +19,15 @@ const Dashboard = () => {
       navigate("/auth");
     }
   }, [isAuthenticated, navigate]);
+
+  const handleSignOut = () => {
+    signOut();
+    toast({
+      title: "Signed out",
+      description: "You have been signed out successfully.",
+    });
+    navigate("/");
+  };
 
   if (!user) return null;
 
@@ -233,6 +243,17 @@ const Dashboard = () => {
               </Card>
             </TabsContent>
           </Tabs>
+
+          <div className="mt-8">
+            <Button 
+              onClick={handleSignOut} 
+              variant="outline" 
+              className="w-full"
+            >
+              <LogOut className="h-4 w-4 mr-2" />
+              Sign Out
+            </Button>
+          </div>
         </div>
       </div>
 
