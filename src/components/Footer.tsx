@@ -9,7 +9,7 @@ const Footer = () => {
           {/* About */}
           <div>
             <span className="text-2xl font-bold mb-4">
-              <span style={{ color: '#2563eb' }}>Local</span><span style={{ color: '#1e293b' }}>Link</span>
+              <span style={{color: '#184bb8ff' }}>Local</span><span style={{ color: '#b379ffff' }}>Link</span>
             </span>
             <p className="text-gray-300 text-sm leading-relaxed">
               Connecting you with trusted local service providers in Sikandarpur, Ballia and beyond.
