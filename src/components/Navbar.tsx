@@ -1,6 +1,6 @@
 import { Link, useLocation } from "react-router-dom";
 import { Button } from "./ui/button";
-import { Bell, User, Settings, Home, LogOut, Menu } from "lucide-react";
+import { Bell, User, Settings, Home, LogOut, Menu, ArrowLeft } from "lucide-react";
 import { useAuth } from "@/contexts/AuthContext";
 import { useNavigate } from "react-router-dom";
 import { toast } from "@/hooks/use-toast";
@@ -34,9 +34,21 @@ const Navbar = () => {
     <nav className="border-b bg-background sticky top-0 z-50">
       <div className="container px-0 mx-auto">
         <div className="flex h-16 items-center justify-between w-full">
-          <Link to="/" className="flex items-center text-3xl font-bold pl-[20px]">
-            <span style={{ color: '#184bb8ff' }}>Local</span><span style={{ color: '#b379ffff' }}>Link</span>
-          </Link>
+          <div className="flex items-center gap-3">
+            {/* Back arrow in circle, hidden on home page */}
+            {location.pathname !== "/" && (
+              <button
+                className="w-9 h-9 flex items-center justify-center rounded-full bg-gray-200 text-gray-700 ml-[5px] mr-[5px] [@media(min-width:900px)]:hidden"
+                aria-label="Go Back"
+                onClick={() => window.history.back()}
+              >
+                <ArrowLeft className="h-5 w-5" />
+              </button>
+            )}
+            <Link to="/" className={`flex items-center text-3xl font-bold ${location.pathname === '/' ? 'pl-[20px]' : ''}`}>
+              <span style={{ color: '#184bb8ff' }}>Local</span><span style={{ color: '#b379ffff' }}>Link</span>
+            </Link>
+          </div>
 
           {/* Desktop Links - hidden above 900px, mobile-first */}
           <div className="hidden [@media(min-width:900px)]:flex items-center gap-8">
@@ -48,7 +60,7 @@ const Navbar = () => {
             <Link to="/hurry-mode-demo" className="text-foreground hover:text-primary transition-colors">Hurry Mode</Link>
           </div>
 
-          <div className="flex items-center gap-3 pr-[20px]">
+          <div className="flex items-center gap-2 pr-[20px]">
             <Link to="/settings">
               <Button variant="ghost" size="icon" className="hidden md:flex">
                 <Settings className="h-5 w-5" />
@@ -60,15 +72,18 @@ const Navbar = () => {
                   <InstantModeToggle onToggle={setInstantMode} />
                 )}
                 <Link to="/notifications">
-                  <Button variant="ghost" size="icon" className="hidden md:flex">
+                  <Button variant="ghost" size="icon">
                     <Bell className="h-5 w-5" />
                   </Button>
                 </Link>
-                <Link to="/dashboard">
-                  <Button variant="ghost" size="icon" className="hidden md:flex">
-                    <User className="h-5 w-5" />
-                  </Button>
-                </Link>
+                {/* User icon between notification and hamburger menu in mobile view */}
+                {isAuthenticated && (
+                  <Link to="/dashboard" className="flex items-center">
+                    <div className="w-9 h-9 flex items-center justify-center rounded-full bg-blue-500 text-white">
+                      <User className="h-5 w-5" />
+                    </div>
+                  </Link>
+                )}
               </>
             ) : (
               <Link to="/auth">
@@ -87,14 +102,7 @@ const Navbar = () => {
           isAuthenticated={isAuthenticated}
           user={user}
           handleSignOut={handleSignOut}
-        />
-      )}
-      {mobileMenuOpen && (
-        <button
-          className="fixed inset-0 z-50 bg-transparent"
-          style={{ cursor: "pointer" }}
-          aria-label="Close menu"
-          onClick={() => setMobileMenuOpen(false)}
+          closeMenu={() => setMobileMenuOpen(false)}
         />
       )}
     </nav>

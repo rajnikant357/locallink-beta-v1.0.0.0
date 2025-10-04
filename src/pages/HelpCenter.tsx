@@ -132,9 +132,13 @@ const HelpCenter = () => {
         </section>
       </div>
 
-  <Footer />
-  {/* Chatbot Button only for HelpCenter page */}
-  <ChatbotButton />
+      <Footer />
+      {/* Chatbot Button only for HelpCenter page */}
+      {typeof window !== "undefined" && window.innerWidth < 768 && (
+        <div style={{ position: 'fixed', bottom: 24, right: 24, zIndex: 10 }}>
+          <ChatbotButton />
+        </div>
+      )}
     </div>
   );
 };

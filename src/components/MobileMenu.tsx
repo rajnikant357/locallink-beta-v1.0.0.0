@@ -1,53 +1,80 @@
-
-import { Link, useNavigate } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 import { Button } from "./ui/button";
-import { X, Settings, User, MessageSquare } from "lucide-react";
-import ChatbotIcon from "./ui/chatbotIcon";
-
+import { Bell, User, Settings, Home, LogOut, Menu, MessageSquare, X } from "lucide-react";
+import { useAuth } from "@/contexts/AuthContext";
+import { useNavigate } from "react-router-dom";
+import { toast } from "@/hooks/use-toast";
+import { useEffect, useState } from "react";
+import InstantModeToggle from "./InstantModeToggle";
+import HurryModeDemo from "@/pages/HurryModeDemo";
 
 const MobileMenu = ({ isAuthenticated, user, handleSignOut, closeMenu }) => {
   const navigate = useNavigate();
-  const handleNav = (to) => {
+  const handleNav = () => {
     closeMenu();
-    navigate(to);
   };
   return (
     <div className="fixed inset-0 bg-black/60 z-50 flex justify-end">
   <div className="bg-background w-64 h-full shadow-lg p-6 flex flex-col gap-6 animate-slide-in-right relative">
         <div className="flex items-center justify-between mb-4">
-          <span className="text-2xl font-bold pl-[20px] cursor-pointer" onClick={() => handleNav("/")}>LocalLink</span>
+          <span className="text-2xl font-bold pl-[20px] cursor-pointer" onClick={handleNav}>LocalLink</span>
           <button className="pr-[20px]" aria-label="Close menu" onClick={closeMenu}>
             <X className="h-6 w-6 text-muted-foreground" />
           </button>
         </div>
-        <button className="text-left text-foreground hover:text-primary" onClick={() => handleNav("/")}>Home</button>
-        <button className="text-left text-foreground hover:text-primary" onClick={() => handleNav("/categories")}>Categories</button>
-        <button className="text-left text-foreground hover:text-primary" onClick={() => handleNav("/providers")}>Providers</button>
-        <button className="text-left text-foreground hover:text-primary" onClick={() => handleNav("/how-it-works")}>How It Works</button>
-        <button className="text-left text-foreground hover:text-primary" onClick={() => handleNav("/about")}>About</button>
-        <button className="text-left text-foreground hover:text-primary" onClick={() => handleNav("/hurry-mode-demo")}>Hurry Mode</button>
-        <button className="text-left text-foreground hover:text-primary flex items-center gap-2" onClick={() => handleNav("/settings")}>  Settings</button>
+  <Link to="/" className="text-left text-foreground hover:text-primary" onClick={handleNav}>Home</Link>
+  <Link to="/categories" className="text-left text-foreground hover:text-primary" onClick={handleNav}>Categories</Link>
+  <Link to="/providers" className="text-left text-foreground hover:text-primary" onClick={handleNav}>Providers</Link>
+  <Link to="/how-it-works" className="text-left text-foreground hover:text-primary" onClick={handleNav}>How It Works</Link>
+  <Link to="/about" className="text-left text-foreground hover:text-primary" onClick={handleNav}>About</Link>
+  <Link to="/hurry-mode-demo" className="text-left text-foreground hover:text-primary" onClick={handleNav}>Hurry Mode</Link>
+  {/* Removed settings text link from main list */}
         {isAuthenticated ? (
           <>
-            <button className="text-left text-foreground hover:text-primary" onClick={() => handleNav("/dashboard")}>Dashboard</button>
-            {/* User icon and chatbot at bottom in a row */}
+            <Link to="/help-center" className="text-left text-foreground hover:text-primary" onClick={handleNav}>Help Center</Link>
+            <Link to="/faqs" className="text-left text-foreground hover:text-primary" onClick={handleNav}>FAQs</Link>
+            <Link to="/contact" className="text-left text-foreground hover:text-primary" onClick={handleNav}>Contact Us</Link>
+            {/* Chatbot, Settings icon, User icon, and Sign Out button in a row at the bottom */}
             <div className="absolute bottom-6 left-0 w-full flex flex-col items-center gap-3">
-                <button className="w-12 h-12 flex items-center justify-center rounded-full bg-blue-500 text-white" onClick={() => handleNav("/chatbot")}> <MessageSquare className="h-6 w-6" /> </button>
-              <Button variant="outline" className="w-full mt-2" onClick={() => { handleSignOut(); closeMenu(); }}>Sign Out</Button>
-                <div className="flex flex-row items-center justify-center gap-4 w-full mt-2">
-                  <button className="text-muted-foreground hover:text-primary text-sm" onClick={() => handleNav("/terms")}>Terms of Service</button>
-                  <button className="text-muted-foreground hover:text-primary text-sm" onClick={() => handleNav("/policy")}>Privacy Policy</button>
-                </div>
+              <div className="flex flex-row items-center justify-center gap-4 w-full">
+                <Link to="/dashboard" className="w-12 h-12 flex items-center justify-center rounded-full bg-blue-500 text-white" onClick={handleNav}>
+                  <User className="h-6 w-6" />
+                </Link>
+                <button type="button" className="w-12 h-12 flex items-center justify-center rounded-full bg-blue-500 text-white" onClick={() => {
+                  closeMenu();
+                  window.dispatchEvent(new Event('open-chatbot'));
+                }}>
+                  <MessageSquare className="h-6 w-6" />
+                </button>
+                <Link to="/settings" className="w-12 h-12 flex items-center justify-center rounded-full bg-gray-200 text-gray-700" onClick={handleNav}>
+                  <Settings className="h-6 w-6" />
+                </Link>
+              </div>
+              <div className="flex flex-row items-center justify-center gap-4 w-full mt-2">
+                <Link to="/terms" className="text-muted-foreground hover:text-primary text-sm" onClick={handleNav}>Terms of Service</Link>
+                <Link to="/privacy" className="text-muted-foreground hover:text-primary text-sm" onClick={handleNav}>Privacy Policy</Link>
+              </div>
             </div>
           </>
         ) : (
           <div className="absolute bottom-6 left-0 w-full flex flex-col items-center gap-3">
             <div className="flex flex-row items-center justify-center gap-4 w-full">
-                <button className="w-12 h-12 flex items-center justify-center rounded-full bg-blue-500 text-white" onClick={() => handleNav("/chatbot")}> <MessageSquare className="h-6 w-6" /> </button>
+              <Link to="/auth" className="w-20" onClick={handleNav}>
+                <Button className="w-full bg-blue-500 text-white hover:bg-blue-600">Sign In</Button>
+              </Link>
+              <button type="button" className="w-12 h-12 flex items-center justify-center rounded-full bg-blue-500 text-white" onClick={() => {
+                closeMenu();
+                window.dispatchEvent(new Event('open-chatbot'));
+              }}>
+                <MessageSquare className="h-6 w-6" />
+              </button>
+              <Link to="/settings" className="w-12 h-12 flex items-center justify-center rounded-full bg-gray-200 text-gray-700" onClick={handleNav}>
+                <Settings className="h-6 w-6" />
+              </Link>
             </div>
             <div className="flex flex-row items-center justify-center gap-4 w-full mt-2">
-              <button className="text-muted-foreground hover:text-primary text-sm" onClick={() => handleNav("/terms")}>Terms of Service</button>
-              <button className="text-muted-foreground hover:text-primary text-sm" onClick={() => handleNav("/policy")}>Privacy Policy</button>
+              <Link to="/terms" className="text-muted-foreground hover:text-primary text-sm" onClick={handleNav}>Terms of Service</Link>
+              <Link to="/privacy" className="text-muted-foreground hover:text-primary text-sm" onClick={handleNav}>Privacy Policy</Link>
             </div>
           </div>
         )}

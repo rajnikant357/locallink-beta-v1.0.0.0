@@ -133,9 +133,13 @@ const FAQs = () => {
         </div>
       </div>
 
-  <Footer />
-  {/* Chatbot Button only for FAQs page */}
-  <ChatbotButton />
+      <Footer />
+      {/* Chatbot Button only for FAQs page */}
+      {typeof window !== "undefined" && window.innerWidth < 768 && (
+        <div style={{ position: 'fixed', bottom: 24, right: 24, zIndex: 10 }}>
+          <ChatbotButton />
+        </div>
+      )}
     </div>
   );
 };

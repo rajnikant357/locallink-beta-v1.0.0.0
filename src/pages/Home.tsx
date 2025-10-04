@@ -8,287 +8,287 @@ import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 
 const categories = [
-  { icon: Zap, name: "Electrician", count: "48 providers", path: "/category/electrician" },
-  { icon: Wrench, name: "Plumber", count: "36 providers", path: "/category/plumber" },
-  { icon: Hammer, name: "Carpenter", count: "29 providers", path: "/category/carpenter" },
-  { icon: Paintbrush, name: "Painter", count: "24 providers", path: "/category/painter" },
-  { icon: Sparkles, name: "Cleaner", count: "42 providers", path: "/category/cleaner" },
-  { icon: Shirt, name: "Tailor", count: "18 providers", path: "/category/tailor" },
+	{ icon: Zap, name: "Electrician", count: "48 providers", path: "/category/electrician" },
+	{ icon: Wrench, name: "Plumber", count: "36 providers", path: "/category/plumber" },
+	{ icon: Hammer, name: "Carpenter", count: "29 providers", path: "/category/carpenter" },
+	{ icon: Paintbrush, name: "Painter", count: "24 providers", path: "/category/painter" },
+	{ icon: Sparkles, name: "Cleaner", count: "42 providers", path: "/category/cleaner" },
+	{ icon: Shirt, name: "Tailor", count: "18 providers", path: "/category/tailor" },
 ];
 
 const providers = [
-  {
-    name: "Rajesh Kumar",
-    role: "Electrician",
-    rating: 4.8,
-    location: "Sikandarpur, 2.3 km",
-    hourly: "₹500/hour",
-    available: true,
-    skills: ["Wiring", "Repairs", "Installation"],
-  },
-  {
-    name: "Sunil Yadav",
-    role: "Plumber",
-    rating: 4.6,
-    location: "Ballia, 3.1 km",
-    hourly: "₹450/hour",
-    available: false,
-    skills: ["Pipe Fitting", "Leakage", "Bathroom"],
-  },
-  {
-    name: "Amit Singh",
-    role: "Carpenter",
-    rating: 4.9,
-    location: "Sikandarpur, 1.8 km",
-    hourly: "₹600/hour",
-    available: true,
-    skills: ["Furniture", "Repair", "Custom Work"],
-  },
-  {
-    name: "Rahul Kumar ",
-    role: "Technician",
-    rating: 4.0,
-    location: "Sikandarpur, 1 km",
-    hourly: "₹500/hour",
-    available: true,
-    skills: ["Wifi Installation", "TV Repair", "Tech support"],
-  },
-  {
-    name: "Ajay ",
-    role: "Electrician",
-    rating: 4.8,
-    location: "Sikandarpur, 2.6 km",
-    hourly: "₹500/hour",
-    available: true,
-    skills: ["N/A"],
-  },
-  {
-    name: "Shantanu Yadav ",
-    role: "Plumber",
-    rating: 3.2,
-    location: "Khejuri, 2 km",
-    hourly: "₹250/hour",
-    available: true,
-    skills: ["N/A"],
-  },
-  {
-    name: "Manoj Pandey ",
-    role: "Mechanic",
-    rating: 3.5,
-    location: "Dadar, 4.5 km",
-    hourly: "₹300/hour",
-    available: true,
-    skills: ["N/A"],
-  },
-  {
-    name: "Raju singh ",
-    role: "Painter",
-    rating: 4.2,
-    location: "Mahulanpar, 10 km",
-    hourly: "₹400/day",
-    available: true,
-    skills: ["N/A"],
-  },
+	{
+		name: "Rajesh Kumar",
+		role: "Electrician",
+		rating: 4.8,
+		location: "Sikandarpur, 2.3 km",
+		hourly: "₹500/hour",
+		available: true,
+		skills: ["Wiring", "Repairs", "Installation"],
+	},
+	{
+		name: "Sunil Yadav",
+		role: "Plumber",
+		rating: 4.6,
+		location: "Ballia, 3.1 km",
+		hourly: "₹450/hour",
+		available: false,
+		skills: ["Pipe Fitting", "Leakage", "Bathroom"],
+	},
+	{
+		name: "Amit Singh",
+		role: "Carpenter",
+		rating: 4.9,
+		location: "Sikandarpur, 1.8 km",
+		hourly: "₹600/hour",
+		available: true,
+		skills: ["Furniture", "Repair", "Custom Work"],
+	},
+	{
+		name: "Rahul Kumar ",
+		role: "Technician",
+		rating: 4.0,
+		location: "Sikandarpur, 1 km",
+		hourly: "₹500/hour",
+		available: true,
+		skills: ["Wifi Installation", "TV Repair", "Tech support"],
+	},
+	{
+		name: "Ajay ",
+		role: "Electrician",
+		rating: 4.8,
+		location: "Sikandarpur, 2.6 km",
+		hourly: "₹500/hour",
+		available: true,
+		skills: ["N/A"],
+	},
+	{
+		name: "Shantanu Yadav ",
+		role: "Plumber",
+		rating: 3.2,
+		location: "Khejuri, 2 km",
+		hourly: "₹250/hour",
+		available: true,
+		skills: ["N/A"],
+	},
+	{
+		name: "Manoj Pandey ",
+		role: "Mechanic",
+		rating: 3.5,
+		location: "Dadar, 4.5 km",
+		hourly: "₹300/hour",
+		available: true,
+		skills: ["N/A"],
+	},
+	{
+		name: "Raju singh ",
+		role: "Painter",
+		rating: 4.2,
+		location: "Mahulanpar, 10 km",
+		hourly: "₹400/day",
+		available: true,
+		skills: ["N/A"],
+	},
 ];
 
 const Home = () => {
-  return (
-    <div className="min-h-screen flex flex-col">
-      <Navbar />
-      
-      {/* Hero Section */}
-  <section className="bg-gradient-to-r from-[#467ae9ff] to-[#1d4ed8] text-primary-foreground py-20">
-        <div className="container mx-auto px-4">
-          <div className="max-w-3xl mx-auto text-center">
-            <h1 className="text-4xl md:text-5xl font-bold mb-4">
-              Find Local Service Providers Instantly
-            </h1>
-            <p className="text-lg md:text-xl mb-8 opacity-90">
-              Connect with verified electricians, carpenters, tailors, and more in your area
-            </p>
-            
-            {/* Search Bar */}
-            <div className="bg-white rounded-lg p-4 shadow-lg">
-              <div className="flex flex-col md:flex-row gap-3">
-                <div className="flex items-center flex-1 border rounded-md px-3 bg-white">
-                  <Search className="h-5 w-5 text-muted-foreground" />
-                  <Input 
-                    placeholder="What service do you need?" 
-                    className="border-0 focus-visible:ring-0 focus-visible:ring-offset-0"
-                  />
-                </div>
-                <div className="flex items-center flex-1 border rounded-md px-3 bg-white">
-                  <MapPin className="h-5 w-5 text-muted-foreground" />
-                  <Input 
-                    placeholder="Search for location...." 
-                    className="border-0 focus-visible:ring-0 focus-visible:ring-offset-0"
-                  />
-                </div>
-                <Button size="lg" className="md:w-auto">
-                  Search
-                </Button>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
+	return (
+		<div className="min-h-screen flex flex-col">
+			<Navbar />
 
-      {/* Popular Categories */}
-      <section className="py-16 bg-background">
-        <div className="container mx-auto px-4">
-          <div className="flex justify-between items-center mb-8">
-            <h2 className="text-3xl font-bold">Popular Categories</h2>
-            <Link to="/categories" className="text-primary hover:underline">
-              View all →
-            </Link>
-          </div>
-          
-          <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-4">
-            {categories.map((category) => (
-              <Link key={category.name} to={category.path}>
-                <Card className="hover:shadow-lg transition-shadow cursor-pointer">
-                  <CardContent className="p-6 text-center">
-                    <div className="w-16 h-16 mx-auto mb-4 bg-category-bg rounded-full flex items-center justify-center">
-                      <category.icon className="h-8 w-8 text-category-icon" />
-                    </div>
-                    <h3 className="font-semibold mb-1">{category.name}</h3>
-                    <p className="text-sm text-muted-foreground">{category.count}</p>
-                  </CardContent>
-                </Card>
-              </Link>
-            ))}
-          </div>
-        </div>
-      </section>
+			{/* Hero Section */}
+			<section className="bg-gradient-to-r from-[#467ae9ff] to-[#1d4ed8] text-primary-foreground py-20">
+				<div className="container mx-auto px-4">
+					<div className="max-w-3xl mx-auto text-center">
+						<h1 className="text-4xl md:text-5xl font-bold mb-4">
+							Find Local Service Providers Instantly
+						</h1>
+						<p className="text-lg md:text-xl mb-8 opacity-90">
+							Connect with verified electricians, carpenters, tailors, and more in your area
+						</p>
 
-      {/* Available Right Now */}
-      <section className="py-16 bg-muted/30">
-        <div className="container mx-auto px-4">
-          <div className="flex justify-between items-center mb-8">
-            <h2 className="text-3xl font-bold">Available Right Now</h2>
-            <Link to="/providers" className="text-primary hover:underline">
-              View all →
-            </Link>
-          </div>
+						{/* Search Bar */}
+						<div className="bg-white rounded-lg p-4 shadow-lg">
+							<div className="flex flex-col md:flex-row gap-3">
+								<div className="flex items-center flex-1 border rounded-md px-3 bg-white">
+									<Search className="h-5 w-5 text-muted-foreground" />
+									<Input
+										placeholder="What service do you need?"
+										className="border-0 focus-visible:ring-0 focus-visible:ring-offset-0"
+									/>
+								</div>
+								<div className="flex items-center flex-1 border rounded-md px-3 bg-white">
+									<MapPin className="h-5 w-5 text-muted-foreground" />
+									<Input
+										placeholder="Search for location...."
+										className="border-0 focus-visible:ring-0 focus-visible:ring-offset-0"
+									/>
+								</div>
+								<Button size="lg" className="md:w-auto">
+									Search
+								</Button>
+							</div>
+						</div>
+					</div>
+				</div>
+			</section>
 
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-6">
-            {providers.map((provider) => (
-              <Card key={provider.name} className="hover:shadow-lg transition-shadow">
-                <CardContent className="p-6">
-                  <div className="flex items-start justify-between mb-4">
-                    <div className="flex items-center gap-3">
-                      <div className="w-12 h-12 bg-category-bg rounded-full flex items-center justify-center">
-                        <span className="text-lg font-semibold text-category-icon">
-                          {provider.name.charAt(0)}
-                        </span>
-                      </div>
-                      <div>
-                        <h3 className="font-semibold">{provider.name}</h3>
-                        <p className="text-sm text-muted-foreground">{provider.role}</p>
-                      </div>
-                    </div>
-                    <div className="flex items-center gap-1">
-                      <Star className="h-4 w-4 fill-yellow-400 text-yellow-400" />
-                      <span className="font-semibold">{provider.rating}</span>
-                    </div>
-                  </div>
+			{/* Popular Categories */}
+			<section className="py-16 bg-background">
+				<div className="container mx-auto px-4">
+					<div className="flex justify-between items-center mb-8">
+						<h2 className="text-3xl font-bold">Popular Categories</h2>
+						<Link to="/categories" className="text-primary hover:underline">
+							View all →
+						</Link>
+					</div>
 
-                  <div className="space-y-2 mb-4">
-                    <p className="text-sm text-muted-foreground flex items-center gap-1">
-                      <MapPin className="h-4 w-4" />
-                      {provider.location}
-                    </p>
-                    <p className="text-sm font-semibold">{provider.hourly}</p>
-                  </div>
+					<div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-4">
+						{categories.map((category) => (
+							<Link key={category.name} to={category.path}>
+								<Card className="hover:shadow-lg transition-shadow cursor-pointer">
+									<CardContent className="p-6 text-center">
+										<div className="w-16 h-16 mx-auto mb-4 bg-category-bg rounded-full flex items-center justify-center">
+											<category.icon className="h-8 w-8 text-category-icon" />
+										</div>
+										<h3 className="font-semibold mb-1">{category.name}</h3>
+										<p className="text-sm text-muted-foreground">{category.count}</p>
+									</CardContent>
+								</Card>
+							</Link>
+						))}
+					</div>
+				</div>
+			</section>
 
-                  <div className="flex flex-wrap gap-2 mb-4">
-                    {provider.skills.map((skill) => (
-                      <Badge key={skill} variant="secondary">
-                        {skill}
-                      </Badge>
-                    ))}
-                  </div>
+			{/* Available Right Now */}
+			<section className="py-16 bg-muted/30">
+				<div className="container mx-auto px-4">
+					<div className="flex justify-between items-center mb-8">
+						<h2 className="text-3xl font-bold">Available Right Now</h2>
+						<Link to="/providers" className="text-primary hover:underline">
+							View all →
+						</Link>
+					</div>
 
-                  <div className="flex items-center gap-2">
-                    <div className={`w-2 h-2 rounded-full ${provider.available ? 'bg-green-500' : 'bg-red-500'}`} />
-                    <span className="text-sm text-muted-foreground">
-                      {provider.available ? 'Available Now' : 'Not Available'}
-                    </span>
-                  </div>
+					<div className="grid grid-cols-2 md:grid-cols-4 gap-6">
+						{providers.map((provider) => (
+							<Card key={provider.name} className="hover:shadow-lg transition-shadow">
+								<CardContent className="p-6">
+									<div className="flex items-start justify-between mb-4">
+										<div className="flex items-center gap-3">
+											<div className="w-12 h-12 bg-category-bg rounded-full flex items-center justify-center">
+												<span className="text-lg font-semibold text-category-icon">
+													{provider.name.charAt(0)}
+												</span>
+											</div>
+											<div>
+												<h3 className="font-semibold">{provider.name}</h3>
+												<p className="text-sm text-muted-foreground">{provider.role}</p>
+											</div>
+										</div>
+										<div className="flex items-center gap-1">
+											<Star className="h-4 w-4 fill-yellow-400 text-yellow-400" />
+											<span className="font-semibold">{provider.rating}</span>
+										</div>
+									</div>
 
-                  <div className="grid grid-cols-2 gap-2 mt-4">
-                    <Button variant="outline" size="sm">View Profile</Button>
-                    <Button size="sm">Book Now</Button>
-                  </div>
-                </CardContent>
-              </Card>
-            ))}
-          </div>
-        </div>
-      </section>
+									<div className="space-y-2 mb-4">
+										<p className="text-sm text-muted-foreground flex items-center gap-1">
+											<MapPin className="h-4 w-4" />
+											{provider.location}
+										</p>
+										<p className="text-sm font-semibold">{provider.hourly}</p>
+									</div>
 
-      {/* How It Works */}
-      <section className="py-16 bg-background">
-        <div className="container mx-auto px-4">
-          <h2 className="text-3xl font-bold text-center mb-12">How LocalLink Works</h2>
-          
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-5xl mx-auto">
-            <div className="text-center">
-              <div className="w-20 h-20 mx-auto mb-4 bg-primary/10 rounded-full flex items-center justify-center">
-                <span className="text-3xl font-bold text-primary">1</span>
-              </div>
-              <h3 className="text-xl font-semibold mb-2">Search Services</h3>
-              <p className="text-muted-foreground">
-                Find the service you need by category or search directly
-              </p>
-            </div>
+									<div className="flex flex-wrap gap-2 mb-4">
+										{provider.skills.map((skill) => (
+											<Badge key={skill} variant="secondary">
+												{skill}
+											</Badge>
+										))}
+									</div>
 
-            <div className="text-center">
-              <div className="w-20 h-20 mx-auto mb-4 bg-primary/10 rounded-full flex items-center justify-center">
-                <span className="text-3xl font-bold text-primary">2</span>
-              </div>
-              <h3 className="text-xl font-semibold mb-2">Choose Provider</h3>
-              <p className="text-muted-foreground">
-                Compare ratings, prices, and availability to select the best match
-              </p>
-            </div>
+									<div className="flex items-center gap-2">
+										<div className={`w-2 h-2 rounded-full ${provider.available ? 'bg-green-500' : 'bg-red-500'}`} />
+										<span className="text-sm text-muted-foreground">
+											{provider.available ? 'Available Now' : 'Not Available'}
+										</span>
+									</div>
 
-            <div className="text-center">
-              <div className="w-20 h-20 mx-auto mb-4 bg-primary/10 rounded-full flex items-center justify-center">
-                <span className="text-3xl font-bold text-primary">3</span>
-              </div>
-              <h3 className="text-xl font-semibold mb-2">Book & Connect</h3>
-              <p className="text-muted-foreground">
-                Book instantly or schedule for later and connect directly
-              </p>
-            </div>
-          </div>
-        </div>
-      </section>
+									<div className="grid grid-cols-2 gap-2 mt-4">
+										<Button variant="outline" size="sm">View Profile</Button>
+										<Button size="sm">Book Now</Button>
+									</div>
+								</CardContent>
+							</Card>
+						))}
+					</div>
+				</div>
+			</section>
 
-      {/* CTA Section */}
-      <section className="py-16 bg-gradient-to-l from-[#467ae9ff] to-[#1d4ed8]  text-primary-foreground">
-        <div className="container mx-auto px-4 text-center">
-          <h2 className="text-3xl font-bold mb-4">Are You a Service Provider?</h2>
-          <p className="text-lg mb-6 opacity-90 max-w-2xl mx-auto">
-            Join LocalLink to find more clients, manage your schedule, and grow your business
-          </p>
-          <div className="flex gap-4 justify-center">
-            <Link to="/learn-more">
-              <Button variant="secondary" size="lg">Learn More</Button>
-            </Link>
-            <Link to="/register-provider">
-              <Button size="lg" className="bg-white" variant="secondary">
-                Register Now
-              </Button>
-            </Link>
-          </div>
-        </div>
-      </section>
+			{/* How It Works */}
+			<section className="py-16 bg-background">
+				<div className="container mx-auto px-4">
+					<h2 className="text-3xl font-bold text-center mb-12">How LocalLink Works</h2>
 
-      <Footer />
-    </div>
-  );
+					<div className="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-5xl mx-auto">
+						<div className="text-center">
+							<div className="w-20 h-20 mx-auto mb-4 bg-primary/10 rounded-full flex items-center justify-center">
+								<span className="text-3xl font-bold text-primary">1</span>
+							</div>
+							<h3 className="text-xl font-semibold mb-2">Search Services</h3>
+							<p className="text-muted-foreground">
+								Find the service you need by category or search directly
+							</p>
+						</div>
+
+						<div className="text-center">
+							<div className="w-20 h-20 mx-auto mb-4 bg-primary/10 rounded-full flex items-center justify-center">
+								<span className="text-3xl font-bold text-primary">2</span>
+							</div>
+							<h3 className="text-xl font-semibold mb-2">Choose Provider</h3>
+							<p className="text-muted-foreground">
+								Compare ratings, prices, and availability to select the best match
+							</p>
+						</div>
+
+						<div className="text-center">
+							<div className="w-20 h-20 mx-auto mb-4 bg-primary/10 rounded-full flex items-center justify-center">
+								<span className="text-3xl font-bold text-primary">3</span>
+							</div>
+							<h3 className="text-xl font-semibold mb-2">Book & Connect</h3>
+							<p className="text-muted-foreground">
+								Book instantly or schedule for later and connect directly
+							</p>
+						</div>
+					</div>
+				</div>
+			</section>
+
+			{/* CTA Section */}
+			<section className="py-16 bg-gradient-to-l from-[#467ae9ff] to-[#1d4ed8]  text-primary-foreground">
+				<div className="container mx-auto px-4 text-center">
+					<h2 className="text-3xl font-bold mb-4">Are You a Service Provider?</h2>
+					<p className="text-lg mb-6 opacity-90 max-w-2xl mx-auto">
+						Join LocalLink to find more clients, manage your schedule, and grow your business
+					</p>
+					<div className="flex gap-4 justify-center">
+						<Link to="/learn-more">
+							<Button variant="secondary" size="lg">Learn More</Button>
+						</Link>
+						<Link to="/register-provider">
+							<Button size="lg" className="bg-white" variant="secondary">
+								Register Now
+							</Button>
+						</Link>
+					</div>
+				</div>
+			</section>
+
+			<Footer />
+		</div>
+	);
 };
 
 export default Home;

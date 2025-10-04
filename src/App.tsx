@@ -25,6 +25,8 @@ import PaymentMethods from "./pages/PaymentMethods";
 import LearnMore from "./pages/LearnMore";
 import HurryModeDemo from "./pages/HurryModeDemo";
 import NotFound from "./pages/NotFound";
+import Chatbot from "./pages/Chatbot";
+import ChatbotButton from "@/components/ChatbotButton"; // Import the ChatbotButton component
 
 const queryClient = new QueryClient();
 
@@ -34,7 +36,13 @@ const App = () => (
       <AuthProvider>
         <Toaster />
         <Sonner />
-  <BrowserRouter basename={import.meta.env.MODE === 'production' ? '/lovable-locallink' : ''}>
+        {/* Show ChatbotButton for all pages in mobile view */}
+        {typeof window !== "undefined" && window.innerWidth < 768 && (
+          <div style={{ position: 'fixed', bottom: 24, right: 24, zIndex: 10 }}>
+            <ChatbotButton />
+          </div>
+        )}
+        <BrowserRouter basename={import.meta.env.MODE === 'production' ? '/lovable-locallink' : ''}>
           <Routes>
             <Route path="/" element={<Home />} />
             <Route path="/categories" element={<Categories />} />
@@ -56,6 +64,7 @@ const App = () => (
             <Route path="/payment-methods" element={<PaymentMethods />} />
             <Route path="/learn-more" element={<LearnMore />} />
             <Route path="/hurry-mode-demo" element={<HurryModeDemo />} />
+            <Route path="/chatbot" element={<Chatbot />} />
             {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
             <Route path="*" element={<NotFound />} />
           </Routes>
