@@ -33,7 +33,7 @@ const App = () => (
       <AuthProvider>
         <Toaster />
         <Sonner />
-  <BrowserRouter basename="/lovable-locallink">
+  <BrowserRouter basename={import.meta.env.MODE === 'production' ? '/lovable-locallink' : ''}>
           <Routes>
             <Route path="/" element={<Home />} />
             <Route path="/categories" element={<Categories />} />
