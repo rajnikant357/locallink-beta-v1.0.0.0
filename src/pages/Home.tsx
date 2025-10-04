@@ -44,6 +44,51 @@ const providers = [
     available: true,
     skills: ["Furniture", "Repair", "Custom Work"],
   },
+  {
+    name: "Rahul Kumar ",
+    role: "Technician",
+    rating: 4.0,
+    location: "Sikandarpur, 1 km",
+    hourly: "₹500/hour",
+    available: true,
+    skills: ["Wifi Installation", "TV Repair", "Tech support"],
+  },
+  {
+    name: "Ajay ",
+    role: "Electrician",
+    rating: 4.8,
+    location: "Sikandarpur, 2.6 km",
+    hourly: "₹500/hour",
+    available: true,
+    skills: ["N/A"],
+  },
+  {
+    name: "Shantanu Yadav ",
+    role: "Plumber",
+    rating: 3.2,
+    location: "Khejuri, 2 km",
+    hourly: "₹250/hour",
+    available: true,
+    skills: ["N/A"],
+  },
+  {
+    name: "Manoj Pandey ",
+    role: "Mechanic",
+    rating: 3.5,
+    location: "Dadar, 4.5 km",
+    hourly: "₹300/hour",
+    available: true,
+    skills: ["N/A"],
+  },
+  {
+    name: "Raju singh ",
+    role: "Painter",
+    rating: 4.2,
+    location: "Mahulanpar, 10 km",
+    hourly: "₹400/day",
+    available: true,
+    skills: ["N/A"],
+  },
 ];
 
 const Home = () => {
@@ -52,7 +97,7 @@ const Home = () => {
       <Navbar />
       
       {/* Hero Section */}
-      <section className="bg-primary text-primary-foreground py-20">
+  <section className="bg-gradient-to-r from-[#467ae9ff] to-[#1d4ed8] text-primary-foreground py-20">
         <div className="container mx-auto px-4">
           <div className="max-w-3xl mx-auto text-center">
             <h1 className="text-4xl md:text-5xl font-bold mb-4">
@@ -75,7 +120,7 @@ const Home = () => {
                 <div className="flex items-center flex-1 border rounded-md px-3 bg-white">
                   <MapPin className="h-5 w-5 text-muted-foreground" />
                   <Input 
-                    placeholder="Sikandarpur, Ballia" 
+                    placeholder="Search for location...." 
                     className="border-0 focus-visible:ring-0 focus-visible:ring-offset-0"
                   />
                 </div>
@@ -126,7 +171,7 @@ const Home = () => {
             </Link>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-6">
             {providers.map((provider) => (
               <Card key={provider.name} className="hover:shadow-lg transition-shadow">
                 <CardContent className="p-6">
@@ -222,7 +267,7 @@ const Home = () => {
       </section>
 
       {/* CTA Section */}
-      <section className="py-16 bg-primary text-primary-foreground">
+      <section className="py-16 bg-gradient-to-l from-[#467ae9ff] to-[#1d4ed8]  text-primary-foreground">
         <div className="container mx-auto px-4 text-center">
           <h2 className="text-3xl font-bold mb-4">Are You a Service Provider?</h2>
           <p className="text-lg mb-6 opacity-90 max-w-2xl mx-auto">
@@ -233,7 +278,7 @@ const Home = () => {
               <Button variant="secondary" size="lg">Learn More</Button>
             </Link>
             <Link to="/register-provider">
-              <Button size="lg" className="bg-blue-600 text-white hover:bg-blue-700">
+              <Button size="lg" className="bg-white" variant="secondary">
                 Register Now
               </Button>
             </Link>

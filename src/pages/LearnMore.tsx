@@ -61,7 +61,7 @@ const LearnMore = () => {
       <Navbar />
       
       {/* Hero Section */}
-      <section className="py-20 bg-gradient-to-b from-primary/10 to-background">
+  <section className="py-20 bg-gradient-to-r from-[#467ae9ff] to-[#1d4ed8]">
         <div className="container mx-auto px-4">
           <div className="max-w-3xl mx-auto text-center">
             <h1 className="text-5xl font-bold mb-6">

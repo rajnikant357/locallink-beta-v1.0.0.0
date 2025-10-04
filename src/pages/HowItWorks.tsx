@@ -10,7 +10,7 @@ const HowItWorks = () => {
       
       <div className="flex-1">
         {/* Hero */}
-        <section className="bg-primary text-primary-foreground py-16">
+  <section className="bg-gradient-to-r from-[#467ae9ff] to-[#1d4ed8] text-primary-foreground py-16">
           <div className="container mx-auto px-4 text-center">
             <h1 className="text-4xl md:text-5xl font-bold mb-4">How LocalLink Works</h1>
             <p className="text-lg md:text-xl opacity-90 max-w-2xl mx-auto">
