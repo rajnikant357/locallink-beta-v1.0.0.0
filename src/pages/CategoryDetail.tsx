@@ -13,6 +13,8 @@ import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import { useAuth } from "@/contexts/AuthContext";
 import { toast } from "@/hooks/use-toast";
+import HurryModeToggle, { HurryModeDetails } from "@/components/HurryModeToggle";
+import LiveResponseScreen from "@/components/LiveResponseScreen";
 
 const providers = [
   {
@@ -46,6 +48,9 @@ const CategoryDetail = () => {
   const { isAuthenticated } = useAuth();
   const navigate = useNavigate();
   const [showFilters, setShowFilters] = useState(false);
+  const [hurryMode, setHurryMode] = useState(false);
+  const [hurryDetails, setHurryDetails] = useState<HurryModeDetails | undefined>();
+  const [showLiveScreen, setShowLiveScreen] = useState(false);
   const categoryName = category?.charAt(0).toUpperCase() + category?.slice(1) || "Category";
 
   const handleAuthRequired = () => {
@@ -55,6 +60,39 @@ const CategoryDetail = () => {
       variant: "destructive",
     });
     navigate("/auth");
+  };
+
+  const handleHurryModeToggle = (enabled: boolean, details?: HurryModeDetails) => {
+    setHurryMode(enabled);
+    setHurryDetails(details);
+    
+    if (enabled) {
+      setShowLiveScreen(true);
+      toast({
+        title: "Hurry Mode Activated!",
+        description: "Broadcasting to nearby providers...",
+      });
+    }
+  };
+
+  const handleProviderSelect = (provider: any) => {
+    toast({
+      title: "Provider Selected!",
+      description: `${provider.name} will arrive in ${provider.eta}`,
+    });
+    setTimeout(() => {
+      setShowLiveScreen(false);
+      setHurryMode(false);
+    }, 2000);
+  };
+
+  const handleCancel = () => {
+    setShowLiveScreen(false);
+    setHurryMode(false);
+    toast({
+      title: "Search Cancelled",
+      description: "You can browse providers manually below.",
+    });
   };
 
   return (
@@ -105,6 +143,11 @@ const CategoryDetail = () => {
         </div>
 
         <div className="container mx-auto px-4 py-8">
+          {/* Hurry Mode Toggle */}
+          <div className="mb-8">
+            <HurryModeToggle onToggle={handleHurryModeToggle} />
+          </div>
+
           <div className="grid grid-cols-1 lg:grid-cols-4 gap-8">
             {/* Filters Sidebar */}
             <aside className={`lg:block ${showFilters ? 'block' : 'hidden'}`}>
@@ -281,6 +324,14 @@ const CategoryDetail = () => {
           </div>
         </div>
       </div>
+
+      {showLiveScreen && (
+        <LiveResponseScreen
+          category={categoryName}
+          onProviderSelect={handleProviderSelect}
+          onCancel={handleCancel}
+        />
+      )}
 
       <Footer />
     </div>

@@ -4,12 +4,14 @@ import { Bell, User, Settings, Home, LogOut } from "lucide-react";
 import { useAuth } from "@/contexts/AuthContext";
 import { useNavigate } from "react-router-dom";
 import { toast } from "@/hooks/use-toast";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
+import InstantModeToggle from "./InstantModeToggle";
 
 const Navbar = () => {
   const { isAuthenticated, signOut, user } = useAuth();
   const navigate = useNavigate();
   const location = useLocation();
+  const [instantMode, setInstantMode] = useState(false);
 
   // Scroll to top when route changes
   useEffect(() => {
@@ -59,6 +61,9 @@ const Navbar = () => {
             </Link>
             {isAuthenticated ? (
               <>
+                {user?.type === "provider" && (
+                  <InstantModeToggle onToggle={setInstantMode} />
+                )}
                 <Link to="/notifications">
                   <Button variant="ghost" size="icon" className="hidden md:flex">
                     <Bell className="h-5 w-5" />

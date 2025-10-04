@@ -23,6 +23,7 @@ import Notifications from "./pages/Notifications";
 import Settings from "./pages/Settings";
 import PaymentMethods from "./pages/PaymentMethods";
 import LearnMore from "./pages/LearnMore";
+import HurryModeDemo from "./pages/HurryModeDemo";
 import NotFound from "./pages/NotFound";
 
 const queryClient = new QueryClient();
@@ -54,6 +55,7 @@ const App = () => (
             <Route path="/settings" element={<Settings />} />
             <Route path="/payment-methods" element={<PaymentMethods />} />
             <Route path="/learn-more" element={<LearnMore />} />
+            <Route path="/hurry-mode-demo" element={<HurryModeDemo />} />
             {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
             <Route path="*" element={<NotFound />} />
           </Routes>
