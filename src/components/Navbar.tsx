@@ -6,6 +6,7 @@ import { useNavigate } from "react-router-dom";
 import { toast } from "@/hooks/use-toast";
 import { useEffect, useState } from "react";
 import InstantModeToggle from "./InstantModeToggle";
+import HurryModeDemo from "@/pages/HurryModeDemo";
 
 const Navbar = () => {
   const { isAuthenticated, signOut, user } = useAuth();
@@ -34,7 +35,7 @@ const Navbar = () => {
           <Link to="/" className="flex items-center text-3xl font-bold">
             <span style={{ color: '#184bb8ff' }}>Local</span><span style={{ color: '#b379ffff' }}>Link</span>
           </Link>
-          
+
           <div className="hidden md:flex items-center gap-8">
             <Link to="/" className="text-foreground hover:text-primary transition-colors">
               Home
@@ -50,6 +51,9 @@ const Navbar = () => {
             </Link>
             <Link to="/about" className="text-foreground hover:text-primary transition-colors">
               About
+            </Link>
+            <Link to="/hurry-mode-demo" className="text-foreground hover:text-primary transition-colors">
+              Hurry Mode
             </Link>
           </div>
 

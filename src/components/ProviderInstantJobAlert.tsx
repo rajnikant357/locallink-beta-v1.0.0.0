@@ -134,28 +134,8 @@ const ProviderInstantJobAlert = ({
 
           {/* Slide to Accept/Reject */}
           <div className="relative">
-            <div className="bg-muted rounded-full p-1 relative overflow-hidden h-16">
-              <div
-                className={`absolute inset-0 flex items-center justify-between px-6 ${
-                  slidePosition > 100 ? "text-white" : "text-muted-foreground"
-                }`}
-              >
-                <span className="font-semibold">
-                  {slidePosition > 100 ? "Release to Accept" : "Slide to Accept"}
-                </span>
-                <ChevronRight className="h-5 w-5" />
-              </div>
-              <div
-                className={`absolute inset-0 flex items-center justify-between px-6 ${
-                  slidePosition < -100 ? "text-white" : "text-muted-foreground"
-                }`}
-              >
-                <ChevronLeft className="h-5 w-5" />
-                <span className="font-semibold">
-                  {slidePosition < -100 ? "Release to Reject" : "Slide to Reject"}
-                </span>
-              </div>
-
+            <div className="bg-muted rounded-full p-1 relative overflow-hidden h-16 flex items-center justify-between">
+              <span className={`font-semibold px-6 ${slidePosition < -100 ? "text-red-600" : "text-muted-foreground"}`}>Slide to Reject</span>
               <div
                 className={`h-14 w-14 rounded-full flex items-center justify-center cursor-grab active:cursor-grabbing transition-colors ${
                   slidePosition > 100
@@ -179,6 +159,7 @@ const ProviderInstantJobAlert = ({
               >
                 <Zap className="h-6 w-6 text-white" />
               </div>
+              <span className={`font-semibold px-6 ${slidePosition > 100 ? "text-green-600" : "text-muted-foreground"}`}>Slide to Accept</span>
             </div>
           </div>
 
@@ -186,7 +167,7 @@ const ProviderInstantJobAlert = ({
           <div className="flex gap-2 pt-2">
             <Button
               variant="outline"
-              className="flex-1 border-red-500 text-red-500 hover:bg-red-50 dark:hover:bg-red-950/20"
+              className="flex-1 border-red-500 text-red-500 hover:bg-red-50 dark:hover:bg-red-950/20 hover:text-red-500"
               onClick={onReject}
             >
               Reject

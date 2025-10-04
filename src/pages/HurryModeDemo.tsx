@@ -46,10 +46,10 @@ const HurryModeDemo = () => {
           <div className="text-center mb-12">
             <h1 className="text-4xl font-bold mb-4 flex items-center justify-center gap-3">
               <Zap className="h-10 w-10 text-orange-500" />
-              Hurry Mode Demo
+              Hurry Mode
             </h1>
             <p className="text-lg text-muted-foreground">
-              Experience the instant job matching system
+              Experience the instant service matching system
             </p>
           </div>
 
@@ -68,7 +68,7 @@ const HurryModeDemo = () => {
                 </p>
                 <Button className="w-full" asChild>
                   <a href="/category/electrician">
-                    Try Hurry Mode (Categories Page)
+                    Try Hurry Mode (Demo)
                   </a>
                 </Button>
               </CardContent>
@@ -91,7 +91,7 @@ const HurryModeDemo = () => {
                   onClick={() => setShowProviderAlert(true)}
                 >
                   <Zap className="h-4 w-4 mr-2" />
-                  Simulate Instant Job Alert
+                  Instant Job Alert(Demo)
                 </Button>
               </CardContent>
             </Card>
@@ -172,13 +172,12 @@ const HurryModeDemo = () => {
               ✓ Key Features
             </h3>
             <ul className="space-y-2 text-sm text-green-700 dark:text-green-300">
-              <li>• Real-time matching like Uber/Ola</li>
+              <li>• Real-time matching</li>
               <li>• 30-second response timer for providers</li>
               <li>• Live response tracking for customers</li>
               <li>• Slide-to-accept/reject interface for providers</li>
-              <li>• Category-specific broadcast (only Electricians get Electrician requests)</li>
+              <li>• Category-specific broadcast (e.g:- only Electricians get Electrician requests)</li>
               <li>• Location-based matching (configurable radius)</li>
-              <li>• Instant Mode toggle in provider navbar</li>
               <li>• Fair first-come-first-serve or best-match assignment</li>
             </ul>
           </div>
