@@ -32,7 +32,8 @@ const Footer = () => {
             <p className="text-gray-300 text-sm leading-relaxed mb-4">
               Connecting you with trusted local service providers in your area.
             </p>
-            <div className="border-t border-gray-700 my-6"></div>
+            {/* Horizontal line only for mobile view */}
+            <div className="border-t border-gray-700 my-6 md:hidden"></div>
             <div className="flex gap-3 mt-4 [@media(max-width:767px)]:hidden">
               <a href="#" className="hover:text-primary transition-colors">
                 <Facebook className="h-5 w-5" />
