@@ -105,14 +105,14 @@ All colors MUST be HSL.
 }
 
 @layer base {
-  * {
     @apply border-border;
   }
 
   body {
     @apply bg-background text-foreground;
+
   }
   input, textarea {
     @apply text-foreground;
   }
-}
+
