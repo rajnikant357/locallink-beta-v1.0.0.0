@@ -10,7 +10,7 @@ export default defineConfig(({ mode }) => ({
     port: 8080,
   },
   plugins: [react(), mode === "development" && componentTagger()].filter(Boolean),
-  base: mode === 'production' ? "/lovable-locallink" : "/",
+  base: mode === 'production' ? "/locallink-beta-v1.0.0.0" : "/",
   resolve: {
     alias: {
       "@": path.resolve(__dirname, "./src"),

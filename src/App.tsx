@@ -42,7 +42,7 @@ const App = () => (
             <ChatbotButton />
           </div>
         )}
-        <BrowserRouter basename={import.meta.env.MODE === 'production' ? '/lovable-locallink' : ''}>
+        <BrowserRouter basename={import.meta.env.MODE === 'production' ? '/locallink-beta-v1.0.0.0' : ''}>
           <Routes>
             <Route path="/" element={<Home />} />
             <Route path="/categories" element={<Categories />} />

@@ -1,7 +1,7 @@
 
 # LocalLink
 
-[<img src="https://img.shields.io/badge/Live%20Demo-Click%20Here-2563eb?style=for-the-badge&logo=github" alt="Live Demo"/>](https://rajnikant357.github.io/lovable-locallink/)
+[<img src="https://img.shields.io/badge/Live%20Demo-Click%20Here-2563eb?style=for-the-badge&logo=github" alt="Live Demo"/>](https://rajnikant357.github.io/locallink-beta-v1.0.0.0/)
 
 ---
 
@@ -41,5 +41,5 @@
 
 ---
 
-[<img src="https://img.shields.io/badge/Live%20Demo-Click%20Here-2563eb?style=for-the-badge&logo=github" alt="Live Demo"/>](https://rajnikant357.github.io/lovable-locallink/)
+[<img src="https://img.shields.io/badge/Live%20Demo-Click%20Here-2563eb?style=for-the-badge&logo=github" alt="Live Demo"/>](https://rajnikant357.github.io/locallink-beta-v1.0.0.0/)
 
