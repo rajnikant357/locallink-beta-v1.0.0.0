@@ -57,17 +57,17 @@ const LearnMore = () => {
   ];
 
   return (
-    <div className="min-h-screen flex flex-col">
+  <div className="min-h-screen flex flex-col">
       <Navbar />
       
       {/* Hero Section */}
-  <section className="py-20 bg-gradient-to-r from-[#467ae9ff] to-[#1d4ed8]">
+      <section className="py-20 bg-gradient-to-r from-[#467ae9ff] to-[#1d4ed8]">
         <div className="container mx-auto px-4">
           <div className="max-w-3xl mx-auto text-center">
-            <h1 className="text-5xl font-bold mb-6">
+            <h1 className="text-5xl font-bold mb-6 text-white">
               Your Trusted Platform for Local Services
             </h1>
-            <p className="text-xl text-muted-foreground mb-8">
+            <p className="text-xl mb-8 text-white">
               Connect with verified professionals in your area for all your home and business service needs
             </p>
             <div className="flex flex-wrap gap-4 justify-center">
@@ -78,7 +78,7 @@ const LearnMore = () => {
                 </Button>
               </Link>
               <Link to="/how-it-works">
-                <Button size="lg" variant="outline">
+                <Button size="lg" variant="outline" className="text-black border-white hover:bg-white hover:text-[#1d4ed8]">
                   See How It Works
                 </Button>
               </Link>
