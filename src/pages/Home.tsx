@@ -6,6 +6,7 @@ import { Card, CardContent } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
+import { useAuth } from "@/contexts/AuthContext";
 
 const categories = [
 	{ icon: Zap, name: "Electrician", count: "48 providers", path: "/category/electrician" },
@@ -92,6 +93,7 @@ const providers = [
 ];
 
 const Home = () => {
+	const { user } = useAuth();
 	return (
 		<div className="min-h-screen flex flex-col">
 			<Navbar />
@@ -232,13 +234,13 @@ const Home = () => {
 				<div className="container mx-auto px-4">
 					<h2 className="text-3xl font-bold text-center mb-12">How LocalLink Works</h2>
 
-					<div className="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-5xl mx-auto">
-						<div className="text-center">
+					<div className="flex flex-row gap-8 max-w-5xl mx-auto justify-center items-stretch overflow-x-auto scrollbar-hide" style={{ WebkitOverflowScrolling: 'touch' }}>
+						<div className="flex-1 min-w-[180px] max-w-[220px] flex flex-col items-center text-center">
 							<div className="w-20 h-20 mx-auto mb-4 bg-primary/10 rounded-full flex items-center justify-center">
 								<span className="text-3xl font-bold text-primary">1</span>
 							</div>
-							<h3 className="text-xl font-semibold mb-2">Search Services</h3>
-							<p className="text-muted-foreground">
+							<h3 className="text-base font-semibold mb-1">Search Services</h3>
+							<p className="text-xs text-muted-foreground mb-2">
 								Find the service you need by category or search directly
 							</p>
 						</div>
@@ -247,8 +249,8 @@ const Home = () => {
 							<div className="w-20 h-20 mx-auto mb-4 bg-primary/10 rounded-full flex items-center justify-center">
 								<span className="text-3xl font-bold text-primary">2</span>
 							</div>
-							<h3 className="text-xl font-semibold mb-2">Choose Provider</h3>
-							<p className="text-muted-foreground">
+							<h3 className="text-base font-semibold mb-1">Choose Provider</h3>
+							<p className="text-xs text-muted-foreground mb-2">
 								Compare ratings, prices, and availability to select the best match
 							</p>
 						</div>
@@ -257,8 +259,8 @@ const Home = () => {
 							<div className="w-20 h-20 mx-auto mb-4 bg-primary/10 rounded-full flex items-center justify-center">
 								<span className="text-3xl font-bold text-primary">3</span>
 							</div>
-							<h3 className="text-xl font-semibold mb-2">Book & Connect</h3>
-							<p className="text-muted-foreground">
+							<h3 className="text-base font-semibold mb-1">Book & Connect</h3>
+							<p className="text-xs text-muted-foreground mb-2">
 								Book instantly or schedule for later and connect directly
 							</p>
 						</div>
@@ -267,6 +269,7 @@ const Home = () => {
 			</section>
 
 			{/* CTA Section */}
+			{(!user || user.type !== "provider") && (
 			<section className="py-16 bg-gradient-to-l from-[#467ae9ff] to-[#1d4ed8]  text-primary-foreground">
 				<div className="container mx-auto px-4 text-center">
 					<h2 className="text-3xl font-bold mb-4">Are You a Service Provider?</h2>
@@ -285,6 +288,7 @@ const Home = () => {
 					</div>
 				</div>
 			</section>
+			)}
 
 			<Footer />
 		</div>

@@ -345,11 +345,11 @@ const Settings = () => {
               </TabsContent>
             </Tabs>
 
-            <div className="mt-8">
+            <div className="mt-8 flex justify-end">
               <Button 
                 onClick={handleSignOut} 
-                variant="outline" 
-                className="w-full"
+                variant="default" 
+                className="bg-blue-500 hover:bg-blue-600 text-white px-4 py-2 w-auto min-w-0"
               >
                 <LogOut className="h-4 w-4 mr-2" />
                 Sign Out

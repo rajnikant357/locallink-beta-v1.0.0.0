@@ -17,10 +17,10 @@ const Auth = () => {
   const [signInData, setSignInData] = useState({ email: "", password: "" });
   const [signUpData, setSignUpData] = useState({ 
     name: "", 
+    phone: "",
     email: "", 
     password: "", 
-    confirmPassword: "",
-    userType: "customer" as "customer" | "provider"
+    confirmPassword: ""
   });
   const [showSignInPassword, setShowSignInPassword] = useState(false);
   const [showSignUpPassword, setShowSignUpPassword] = useState(false);
@@ -70,9 +70,9 @@ const Auth = () => {
 
     const success = await signUp(
       signUpData.name,
+      signUpData.phone,
       signUpData.email,
-      signUpData.password,
-      signUpData.userType
+      signUpData.password
     );
 
     if (success) {
@@ -86,18 +86,17 @@ const Auth = () => {
   };
 
   return (
-    <div className="min-h-screen flex items-center justify-center bg-muted/30 p-4">
-      <div className="w-full max-w-md">
-        <div className="flex items-center justify-center mb-8 gap-4">
-          <Link to="/" className="hover:opacity-80 transition-opacity">
-            <Button variant="ghost" size="icon">
-              <ArrowLeft className="h-5 w-5" />
-            </Button>
+    <div className="min-h-screen flex flex-col items-center justify-start bg-muted/30 p-4">
+      <div className="w-full max-w-md mt-6 md:mt-12">
+        {/* Back arrow styled and positioned like Navbar */}
+        <div className="flex items-center mb-4">
+          <Link to="/" className="w-9 h-9 flex items-center justify-center rounded-full bg-gray-200 text-gray-700 ml-[5px] mr-[5px]">
+            <ArrowLeft className="h-5 w-5" />
           </Link>
-          <span className="text-3xl font-bold text-primary">LocalLink</span>
+          <span className="text-3xl font-bold text-primary ml-2">LocalLink</span>
         </div>
 
-        <Card>
+        <Card className="mt-2">
           <CardContent className="p-6">
             <Tabs defaultValue="signin" className="w-full">
               <TabsList className="grid w-full grid-cols-2 mb-6">
@@ -161,18 +160,8 @@ const Auth = () => {
 
               <TabsContent value="signup">
                 <form onSubmit={handleSignUp} className="space-y-4">
-                  <div>
-                    <Label htmlFor="signup-usertype">I am a</Label>
-                    <select
-                      id="signup-usertype"
-                      className="flex h-10 w-full rounded-md border border-input bg-background px-3 py-2 text-sm ring-offset-background focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2"
-                      value={signUpData.userType}
-                      onChange={(e) => setSignUpData({...signUpData, userType: e.target.value as "customer" | "provider"})}
-                    >
-                      <option value="customer">Customer</option>
-                      <option value="provider">Service Provider</option>
-                    </select>
-                  </div>
+
+
 
                   <div>
                     <Label htmlFor="signup-name">Full Name</Label>
@@ -181,6 +170,18 @@ const Auth = () => {
                       value={signUpData.name}
                       onChange={(e) => setSignUpData({...signUpData, name: e.target.value})}
                       placeholder="John Doe"
+                      required
+                    />
+                  </div>
+
+                  <div>
+                    <Label htmlFor="signup-phone">Phone Number</Label>
+                    <Input
+                      id="signup-phone"
+                      type="tel"
+                      value={signUpData.phone || ''}
+                      onChange={e => setSignUpData({ ...signUpData, phone: e.target.value })}
+                      placeholder="e.g. 9876543210"
                       required
                     />
                   </div>

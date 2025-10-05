@@ -57,24 +57,18 @@ const UserDashboard = () => {
     { id: 2, title: "Refer & Earn ₹100", code: "REFER100", expires: "2025-04-01" },
   ];
 
-  if (!user) return null;
-
   return (
-    <div className="min-h-screen flex flex-col">
+    <div className="min-h-screen bg-background">
       <Navbar />
-      
-      <div className="flex-1 py-12 bg-muted/30">
-        <div className="container mx-auto px-4">
-          {/* Header with Profile */}
-          <div className="mb-8 flex flex-col md:flex-row items-start md:items-center gap-6">
-            <ProfilePicture name={user.name} editable />
-            <div className="flex-1">
-              <span className="text-4xl font-bold mb-2">
-                <span style={{ color: '#2563eb' }}>Local</span><span style={{ color: '#1e293b' }}>Link</span>
-              </span>
-              <p className="text-muted-foreground">Welcome back, {user.name}</p>
+      <div className="container mx-auto py-8">
+        <div className="flex flex-col md:flex-row md:items-center md:justify-between mb-8">
+          <div className="flex items-center gap-4">
+            <ProfilePicture name={user?.name || "User"} type="customer" />
+            <div>
+              <h1 className="text-3xl font-bold">{user?.name || "User Dashboard"}</h1>
               <Badge className="mt-2">Customer Account</Badge>
             </div>
+          </div>
           </div>
 
           {/* Quick Stats */}
@@ -131,7 +125,6 @@ const UserDashboard = () => {
               <TabsTrigger value="overview">Overview</TabsTrigger>
               <TabsTrigger value="bookings">Bookings</TabsTrigger>
               <TabsTrigger value="search">Search</TabsTrigger>
-              <TabsTrigger value="messages">Messages</TabsTrigger>
               <TabsTrigger value="payments">Payments</TabsTrigger>
               <TabsTrigger value="favorites">Favorites</TabsTrigger>
               <TabsTrigger value="offers">Offers</TabsTrigger>
@@ -276,23 +269,6 @@ const UserDashboard = () => {
               </Card>
             </TabsContent>
 
-            {/* Messages Tab */}
-            <TabsContent value="messages">
-              <Card>
-                <CardHeader>
-                  <CardTitle>Messages</CardTitle>
-                </CardHeader>
-                <CardContent>
-                  <div className="text-center py-12">
-                    <MessageSquare className="h-12 w-12 mx-auto mb-4 text-muted-foreground" />
-                    <p className="text-muted-foreground">No messages yet</p>
-                    <p className="text-sm text-muted-foreground mt-2">
-                      Start a conversation with a service provider
-                    </p>
-                  </div>
-                </CardContent>
-              </Card>
-            </TabsContent>
 
             {/* Payments Tab */}
             <TabsContent value="payments" className="space-y-6">
@@ -423,22 +399,22 @@ const UserDashboard = () => {
           </Tabs>
 
           {/* Sign Out Button */}
-          <div className="mt-8">
+          <div className="mt-8 flex justify-end">
             <Button 
               onClick={handleSignOut} 
-              variant="outline" 
-              className="w-full"
+              variant="default" 
+              className="bg-blue-500 hover:bg-blue-600 text-white px-4 py-2 w-auto min-w-0"
             >
               <LogOut className="h-4 w-4 mr-2" />
               Sign Out
             </Button>
           </div>
         </div>
-      </div>
-
-  <Footer />
-  <ChatbotButton />
-    </div>
+        <>
+          <Footer />
+          <ChatbotButton />
+        </>
+  </div>
   );
 };
 

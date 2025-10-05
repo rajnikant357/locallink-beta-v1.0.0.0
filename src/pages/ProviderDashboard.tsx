@@ -94,10 +94,10 @@ const ProviderDashboard = () => {
         <div className="container mx-auto px-4">
           {/* Header with Profile */}
           <div className="mb-8 flex flex-col md:flex-row items-start md:items-center gap-6">
-            <ProfilePicture name={user.name} editable />
+            <ProfilePicture name={user.name} type="provider" editable />
             <div className="flex-1">
               <span className="text-4xl font-bold mb-2">
-                <span style={{ color: '#2563eb' }}>Local</span><span style={{ color: '#1e293b' }}>Link</span>
+                {user.name}
               </span>
               <p className="text-muted-foreground">Welcome back, {user.name}</p>
               <div className="flex items-center gap-2 mt-2">
@@ -178,7 +178,6 @@ const ProviderDashboard = () => {
               <TabsTrigger value="requests">Requests</TabsTrigger>
               <TabsTrigger value="bookings">Bookings</TabsTrigger>
               <TabsTrigger value="earnings">Earnings</TabsTrigger>
-              <TabsTrigger value="messages">Messages</TabsTrigger>
               <TabsTrigger value="reviews">Reviews</TabsTrigger>
               <TabsTrigger value="analytics">Analytics</TabsTrigger>
               <TabsTrigger value="profile">Profile</TabsTrigger>
@@ -459,37 +458,7 @@ const ProviderDashboard = () => {
             </TabsContent>
 
             {/* Messages Tab */}
-            <TabsContent value="messages">
-              <Card>
-                <CardHeader>
-                  <CardTitle>Client Messages</CardTitle>
-                </CardHeader>
-                <CardContent>
-                  <div className="space-y-3">
-                    <div className="p-4 border rounded-lg hover:bg-muted/50 cursor-pointer">
-                      <div className="flex items-start justify-between mb-2">
-                        <div>
-                          <p className="font-medium">Vikram Mehta</p>
-                          <p className="text-sm text-muted-foreground">Can we reschedule to 4 PM?</p>
-                        </div>
-                        <Badge variant="outline">2 min ago</Badge>
-                      </div>
-                      <div className="flex gap-2 mt-3">
-                        <Button size="sm" variant="outline">
-                          <Phone className="h-3 w-3 mr-1" />
-                          Call
-                        </Button>
-                        <Button size="sm" variant="outline">
-                          <Video className="h-3 w-3 mr-1" />
-                          Video
-                        </Button>
-                        <Button size="sm">Reply</Button>
-                      </div>
-                    </div>
-                  </div>
-                </CardContent>
-              </Card>
-            </TabsContent>
+             {/* Removed Messages Tab */}
 
             {/* Reviews Tab */}
             <TabsContent value="reviews" className="space-y-6">
@@ -733,11 +702,11 @@ const ProviderDashboard = () => {
           </Tabs>
 
           {/* Sign Out Button */}
-          <div className="mt-8">
+          <div className="mt-8 flex justify-end">
             <Button 
               onClick={handleSignOut} 
-              variant="outline" 
-              className="w-full"
+              variant="default" 
+              className="bg-blue-500 hover:bg-blue-600 text-white px-4 py-2 w-auto min-w-0"
             >
               <LogOut className="h-4 w-4 mr-2" />
               Sign Out

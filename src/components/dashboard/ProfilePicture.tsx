@@ -1,37 +1,73 @@
+import { useRef, useState, useEffect } from "react";
 import { Camera } from "lucide-react";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { Button } from "@/components/ui/button";
 
 interface ProfilePictureProps {
   name: string;
-  imageUrl?: string;
-  onUpload?: () => void;
+  type: "customer" | "provider";
   editable?: boolean;
 }
 
-const ProfilePicture = ({ name, imageUrl, onUpload, editable = false }: ProfilePictureProps) => {
+const getLocalKey = (type: "customer" | "provider") =>
+  type === "provider" ? "locallink_profile_photo_provider" : "locallink_profile_photo_user";
+
+const ProfilePicture = ({ name, type, editable = false }: ProfilePictureProps) => {
   const initials = name
     .split(" ")
     .map((n) => n[0])
     .join("")
     .toUpperCase()
     .slice(0, 2);
+  const [imageUrl, setImageUrl] = useState<string | undefined>(undefined);
+  const fileInputRef = useRef<HTMLInputElement>(null);
+
+  useEffect(() => {
+    const saved = localStorage.getItem(getLocalKey(type));
+    if (saved) setImageUrl(saved);
+  }, [type]);
+
+  const handleUpload = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const file = e.target.files?.[0];
+    if (file) {
+      const reader = new FileReader();
+      reader.onload = (ev) => {
+        const url = ev.target?.result as string;
+        setImageUrl(url);
+        localStorage.setItem(getLocalKey(type), url);
+      };
+      reader.readAsDataURL(file);
+    }
+  };
+
+  const triggerFileInput = () => {
+    fileInputRef.current?.click();
+  };
 
   return (
     <div className="relative inline-block">
-      <Avatar className="h-24 w-24">
+      <Avatar className="h-24 w-24 cursor-pointer" onClick={editable ? triggerFileInput : undefined}>
         <AvatarImage src={imageUrl} alt={name} />
         <AvatarFallback className="text-2xl">{initials}</AvatarFallback>
       </Avatar>
       {editable && (
-        <Button
-          size="icon"
-          variant="secondary"
-          className="absolute bottom-0 right-0 h-8 w-8 rounded-full"
-          onClick={onUpload}
-        >
-          <Camera className="h-4 w-4" />
-        </Button>
+        <>
+          <input
+            ref={fileInputRef}
+            type="file"
+            accept="image/*"
+            className="hidden"
+            onChange={handleUpload}
+          />
+          <Button
+            size="icon"
+            variant="secondary"
+            className="absolute bottom-0 right-0 h-8 w-8 rounded-full"
+            onClick={triggerFileInput}
+          >
+            <Camera className="h-4 w-4" />
+          </Button>
+        </>
       )}
     </div>
   );

@@ -20,6 +20,7 @@ import Pricing from "./pages/Pricing";
 import Auth from "./pages/Auth";
 import Dashboard from "./pages/Dashboard";
 import Notifications from "./pages/Notifications";
+import Messages from "./pages/Messages";
 import Settings from "./pages/Settings";
 import PaymentMethods from "./pages/PaymentMethods";
 import LearnMore from "./pages/LearnMore";
@@ -27,23 +28,26 @@ import HurryModeDemo from "./pages/HurryModeDemo";
 import NotFound from "./pages/NotFound";
 import Chatbot from "./pages/Chatbot";
 import ChatbotButton from "@/components/ChatbotButton"; // Import the ChatbotButton component
+import { useLocation } from "react-router-dom";
 
 const queryClient = new QueryClient();
 
-const App = () => (
-  <QueryClientProvider client={queryClient}>
-    <TooltipProvider>
-      <AuthProvider>
-        <Toaster />
-        <Sonner />
-        {/* Show ChatbotButton for all pages in mobile view */}
-        {typeof window !== "undefined" && window.innerWidth < 768 && (
-          <div style={{ position: 'fixed', bottom: 24, right: 24, zIndex: 10 }}>
-            <ChatbotButton />
-          </div>
-        )}
-        <BrowserRouter basename={import.meta.env.MODE === 'production' ? '/locallink-beta-v1.0.0.0' : ''}>
-          <Routes>
+const App = () => {
+  const location = typeof window !== "undefined" ? window.location : { pathname: "" };
+  return (
+    <QueryClientProvider client={queryClient}>
+      <TooltipProvider>
+        <AuthProvider>
+          <Toaster />
+          <Sonner />
+          {/* Show ChatbotButton for all pages in mobile view except /auth */}
+          {typeof window !== "undefined" && window.innerWidth < 768 && location.pathname !== "/auth" && (
+            <div style={{ position: 'fixed', bottom: 24, right: 24, zIndex: 10 }}>
+              <ChatbotButton />
+            </div>
+          )}
+          <BrowserRouter basename={import.meta.env.MODE === 'production' ? '/locallink-beta-v1.0.0.0' : ''}>
+            <Routes>
             <Route path="/" element={<Home />} />
             <Route path="/categories" element={<Categories />} />
             <Route path="/category/:category" element={<CategoryDetail />} />
@@ -61,6 +65,7 @@ const App = () => (
             <Route path="/dashboard" element={<Dashboard />} />
             <Route path="/notifications" element={<Notifications />} />
             <Route path="/settings" element={<Settings />} />
+            <Route path="/messages" element={<Messages />} />
             <Route path="/payment-methods" element={<PaymentMethods />} />
             <Route path="/learn-more" element={<LearnMore />} />
             <Route path="/hurry-mode-demo" element={<HurryModeDemo />} />
@@ -72,6 +77,7 @@ const App = () => (
       </AuthProvider>
     </TooltipProvider>
   </QueryClientProvider>
-);
+    );
+  };
 
 export default App;

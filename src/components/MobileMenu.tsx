@@ -1,6 +1,7 @@
 import { Link, useLocation } from "react-router-dom";
 import { Button } from "./ui/button";
 import { Bell, User, Settings, Home, LogOut, Menu, MessageSquare, X } from "lucide-react";
+import NavbarUserAvatar from "./NavbarUserAvatar";
 import { useAuth } from "@/contexts/AuthContext";
 import { useNavigate } from "react-router-dom";
 import { toast } from "@/hooks/use-toast";
@@ -37,15 +38,10 @@ const MobileMenu = ({ isAuthenticated, user, handleSignOut, closeMenu }) => {
             {/* Chatbot, Settings icon, User icon, and Sign Out button in a row at the bottom */}
             <div className="absolute bottom-6 left-0 w-full flex flex-col items-center gap-3">
               <div className="flex flex-row items-center justify-center gap-4 w-full">
-                <Link to="/dashboard" className="w-12 h-12 flex items-center justify-center rounded-full bg-blue-500 text-white" onClick={handleNav}>
-                  <User className="h-6 w-6" />
+                <Link to="/dashboard" className="flex items-center gap-2 px-4 py-2 rounded-full bg-blue-100 hover:bg-blue-200 transition-colors" onClick={handleNav}>
+                  <NavbarUserAvatar name={user?.name || "U"} type={user?.type || "customer"} />
+                  <span className="text-base font-medium text-blue-900 truncate max-w-[120px]">{user?.name || "User"}</span>
                 </Link>
-                <button type="button" className="w-12 h-12 flex items-center justify-center rounded-full bg-blue-500 text-white" onClick={() => {
-                  closeMenu();
-                  window.dispatchEvent(new Event('open-chatbot'));
-                }}>
-                  <MessageSquare className="h-6 w-6" />
-                </button>
                 <Link to="/settings" className="w-12 h-12 flex items-center justify-center rounded-full bg-gray-200 text-gray-700" onClick={handleNav}>
                   <Settings className="h-6 w-6" />
                 </Link>
@@ -62,12 +58,6 @@ const MobileMenu = ({ isAuthenticated, user, handleSignOut, closeMenu }) => {
               <Link to="/auth" className="w-20" onClick={handleNav}>
                 <Button className="w-full bg-blue-500 text-white hover:bg-blue-600">Sign In</Button>
               </Link>
-              <button type="button" className="w-12 h-12 flex items-center justify-center rounded-full bg-blue-500 text-white" onClick={() => {
-                closeMenu();
-                window.dispatchEvent(new Event('open-chatbot'));
-              }}>
-                <MessageSquare className="h-6 w-6" />
-              </button>
               <Link to="/settings" className="w-12 h-12 flex items-center justify-center rounded-full bg-gray-200 text-gray-700" onClick={handleNav}>
                 <Settings className="h-6 w-6" />
               </Link>

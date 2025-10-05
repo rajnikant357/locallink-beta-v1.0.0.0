@@ -10,7 +10,7 @@ interface User {
 interface AuthContextType {
   user: User | null;
   signIn: (email: string, password: string) => Promise<boolean>;
-  signUp: (name: string, email: string, password: string, type: "customer" | "provider") => Promise<boolean>;
+  signUp: (name: string, phone: string, email: string, password: string) => Promise<boolean>;
   signOut: () => void;
   isAuthenticated: boolean;
 }
@@ -33,7 +33,7 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
     if (email === "user@gmail.com" && password === "user123") {
       const userData = {
         id: "user-1",
-        name: "John Doe",
+        name: "Amit Sharma",
         email: "user@gmail.com",
         type: "customer" as const,
       };
@@ -54,12 +54,13 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
     return false;
   };
 
-  const signUp = async (name: string, email: string, password: string, type: "customer" | "provider"): Promise<boolean> => {
+  const signUp = async (name: string, phone: string, email: string, password: string): Promise<boolean> => {
     const userData = {
-      id: `${type}-${Date.now()}`,
+      id: `customer-${Date.now()}`,
       name,
+      phone,
       email,
-      type,
+      type: "customer" as const,
     };
     setUser(userData);
     localStorage.setItem("locallink_user", JSON.stringify(userData));
