@@ -27,6 +27,7 @@ import LearnMore from "./pages/LearnMore";
 import HurryModeDemo from "./pages/HurryModeDemo";
 import NotFound from "./pages/NotFound";
 import Chatbot from "./pages/Chatbot";
+import MyBookings from "./pages/MyBookings";
 import ChatbotButton from "@/components/ChatbotButton"; // Import the ChatbotButton component
 import { useLocation } from "react-router-dom";
 
@@ -70,6 +71,7 @@ const App = () => {
             <Route path="/learn-more" element={<LearnMore />} />
             <Route path="/hurry-mode-demo" element={<HurryModeDemo />} />
             <Route path="/chatbot" element={<Chatbot />} />
+            <Route path="/my-bookings" element={<MyBookings />} />
             {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
             <Route path="*" element={<NotFound />} />
           </Routes>

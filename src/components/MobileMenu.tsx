@@ -23,14 +23,7 @@ const MobileMenu = ({ isAuthenticated, user, handleSignOut, closeMenu }) => {
             <X className="h-6 w-6 text-muted-foreground" />
           </button>
         </div>
-  <Link to="/" className="text-left text-foreground hover:text-primary" onClick={handleNav}>Home</Link>
-  <Link to="/categories" className="text-left text-foreground hover:text-primary" onClick={handleNav}>Categories</Link>
-  <Link to="/providers" className="text-left text-foreground hover:text-primary" onClick={handleNav}>Providers</Link>
-  <Link to="/how-it-works" className="text-left text-foreground hover:text-primary" onClick={handleNav}>How It Works</Link>
-  <Link to="/about" className="text-left text-foreground hover:text-primary" onClick={handleNav}>About</Link>
-  <Link to="/hurry-mode-demo" className="text-left text-foreground hover:text-primary" onClick={handleNav}>Hurry Mode</Link>
-  {/* Removed settings text link from main list */}
-        {isAuthenticated ? (
+  {isAuthenticated ? (
           <>
             <Link to="/help-center" className="text-left text-foreground hover:text-primary" onClick={handleNav}>Help Center</Link>
             <Link to="/faqs" className="text-left text-foreground hover:text-primary" onClick={handleNav}>FAQs</Link>

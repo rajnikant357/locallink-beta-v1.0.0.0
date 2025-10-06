@@ -16,7 +16,6 @@ const Navbar = () => {
   const navigate = useNavigate();
   const location = useLocation();
   const [instantMode, setInstantMode] = useState(false);
-  const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [messagesOpen, setMessagesOpen] = useState(false);
 
   // Scroll to top when route changes
@@ -95,26 +94,14 @@ const Navbar = () => {
                   <Button>Sign In</Button>
                 </Link>
               )}
-              {/* Hamburger for mobile - now after sign button, visible below 900px */}
-              <button className="hidden [@media(max-width:900px)]:flex items-center ml-2" onClick={() => setMobileMenuOpen(true)} aria-label="Open menu">
-                <Menu className="h-8 w-8 text-primary" />
-              </button>
             </div>
           </div>
         </div>
-        {mobileMenuOpen && (
-          <MobileMenu
-            isAuthenticated={isAuthenticated}
-            user={user}
-            handleSignOut={handleSignOut}
-            closeMenu={() => setMobileMenuOpen(false)}
-          />
-        )}
       </nav>
       <MessagesOverlay 
         open={messagesOpen} 
         onClose={() => setMessagesOpen(false)} 
-        zIndex={mobileMenuOpen ? 40 : 100} // 40 = below MobileMenu, 100 = above all
+        zIndex={100}
       />
     </>
   );
