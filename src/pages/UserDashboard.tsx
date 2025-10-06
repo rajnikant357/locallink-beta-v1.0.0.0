@@ -63,7 +63,7 @@ const UserDashboard = () => {
       <div className="container mx-auto py-8">
         <div className="flex flex-col md:flex-row md:items-center md:justify-between mb-8">
           <div className="flex items-center gap-4">
-            <ProfilePicture name={user?.name || "User"} type="customer" />
+            <ProfilePicture name={user?.name || "User"} type="customer" editable={true} />
             <div>
               <h1 className="text-3xl font-bold">{user?.name || "User Dashboard"}</h1>
               <Badge className="mt-2">Customer Account</Badge>

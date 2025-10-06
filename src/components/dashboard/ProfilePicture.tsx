@@ -62,7 +62,8 @@ const ProfilePicture = ({ name, type, editable = false }: ProfilePictureProps) =
           <Button
             size="icon"
             variant="secondary"
-            className="absolute bottom-0 right-0 h-8 w-8 rounded-full"
+            className="absolute bottom-0 right-0 h-8 w-8 rounded-full z-20 border-2 border-white shadow-md"
+            style={{ transform: 'translate(25%, 25%)' }}
             onClick={triggerFileInput}
           >
             <Camera className="h-4 w-4" />
