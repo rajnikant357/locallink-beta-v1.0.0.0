@@ -1,5 +1,5 @@
 import { Link, useLocation } from "react-router-dom";
-import { Home, Grid3x3, CalendarCheck, Menu } from "lucide-react";
+import { Home, Grid3x3, CalendarCheck, Menu, Zap } from "lucide-react";
 import { useState } from "react";
 import MobileMenu from "./MobileMenu";
 import { useAuth } from "@/contexts/AuthContext";
@@ -25,8 +25,8 @@ const BottomNavbar = () => {
 
   return (
     <>
-      <nav className="fixed bottom-0 left-0 right-0 bg-background border-t z-40 md:hidden">
-        <div className="flex items-center justify-around h-16 px-4">
+      <nav className="fixed bottom-0 left-0 right-0 bg-background border-t z-40 [@media(max-width:767px)]:block hidden">
+        <div className="flex items-center justify-around h-20 px-2 relative">
           <Link
             to="/"
             className={`flex flex-col items-center gap-1 flex-1 ${
@@ -45,6 +45,19 @@ const BottomNavbar = () => {
           >
             <Grid3x3 className="h-6 w-6" />
             <span className="text-xs">Categories</span>
+          </Link>
+
+          {/* Hurry Mode - Circular Button */}
+          <Link
+            to="/hurry-mode-demo"
+            className="flex flex-col items-center -mt-8"
+          >
+            <div className={`w-16 h-16 rounded-full flex items-center justify-center shadow-lg ${
+              isActive("/hurry-mode-demo") ? "bg-primary text-primary-foreground" : "bg-primary/90 text-primary-foreground"
+            }`}>
+              <Zap className="h-7 w-7 fill-current" />
+            </div>
+            <span className="text-xs mt-1 text-muted-foreground">Hurry</span>
           </Link>
 
           <Link

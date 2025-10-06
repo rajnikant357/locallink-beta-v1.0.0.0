@@ -94,6 +94,13 @@ const Navbar = () => {
                   <Button>Sign In</Button>
                 </Link>
               )}
+              {/* Hamburger menu for tablet view (768px - 900px) */}
+              <MobileMenu
+                isAuthenticated={isAuthenticated}
+                user={user}
+                handleSignOut={handleSignOut}
+                closeMenu={() => {}}
+              />
             </div>
           </div>
         </div>

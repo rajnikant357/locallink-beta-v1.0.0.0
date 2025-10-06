@@ -1,68 +1,125 @@
-import { Link, useLocation } from "react-router-dom";
+import { Link } from "react-router-dom";
+import { X, User, Settings, LogOut, Info, HelpCircle, Phone, FileText, Shield, DollarSign, Users, Menu } from "lucide-react";
 import { Button } from "./ui/button";
-import { Bell, User, Settings, Home, LogOut, Menu, MessageSquare, X } from "lucide-react";
-import NavbarUserAvatar from "./NavbarUserAvatar";
-import { useAuth } from "@/contexts/AuthContext";
-import { useNavigate } from "react-router-dom";
-import { toast } from "@/hooks/use-toast";
-import { useEffect, useState } from "react";
-import InstantModeToggle from "./InstantModeToggle";
-import HurryModeDemo from "@/pages/HurryModeDemo";
+import { useState } from "react";
 
-const MobileMenu = ({ isAuthenticated, user, handleSignOut, closeMenu }) => {
-  const navigate = useNavigate();
-  const handleNav = () => {
+interface MobileMenuProps {
+  isAuthenticated: boolean;
+  user: { name?: string; email?: string; type?: string } | null;
+  handleSignOut: () => void;
+  closeMenu: () => void;
+}
+
+const MobileMenu = ({ isAuthenticated, user, handleSignOut, closeMenu }: MobileMenuProps) => {
+  const [isOpen, setIsOpen] = useState(false);
+
+  const handleClose = () => {
+    setIsOpen(false);
     closeMenu();
   };
+
   return (
-    <div className="fixed inset-0 bg-black/60 z-50 flex justify-end">
-  <div className="bg-background w-64 h-full shadow-lg p-6 flex flex-col gap-6 animate-slide-in-right relative">
-        <div className="flex items-center justify-between mb-4">
-          <span className="text-2xl font-bold pl-[20px] cursor-pointer" onClick={handleNav}>LocalLink</span>
-          <button className="pr-[20px]" aria-label="Close menu" onClick={closeMenu}>
-            <X className="h-6 w-6 text-muted-foreground" />
-          </button>
-        </div>
-  {isAuthenticated ? (
-          <>
-            <Link to="/help-center" className="text-left text-foreground hover:text-primary" onClick={handleNav}>Help Center</Link>
-            <Link to="/faqs" className="text-left text-foreground hover:text-primary" onClick={handleNav}>FAQs</Link>
-            <Link to="/contact" className="text-left text-foreground hover:text-primary" onClick={handleNav}>Contact Us</Link>
-            {/* Chatbot, Settings icon, User icon, and Sign Out button in a row at the bottom */}
-            <div className="absolute bottom-6 left-0 w-full flex flex-col items-center gap-3">
-              <div className="flex flex-row items-center justify-center gap-4 w-full">
-                <Link to="/dashboard" className="flex items-center gap-2 px-4 py-2 rounded-full bg-blue-100 hover:bg-blue-200 transition-colors" onClick={handleNav}>
-                  <NavbarUserAvatar name={user?.name || "U"} type={user?.type || "customer"} />
-                  <span className="text-base font-medium text-blue-900 truncate max-w-[120px]">{user?.name || "User"}</span>
-                </Link>
-                <Link to="/settings" className="w-12 h-12 flex items-center justify-center rounded-full bg-gray-200 text-gray-700" onClick={handleNav}>
-                  <Settings className="h-6 w-6" />
-                </Link>
-              </div>
-              <div className="flex flex-row items-center justify-center gap-4 w-full mt-2">
-                <Link to="/terms" className="text-muted-foreground hover:text-primary text-sm" onClick={handleNav}>Terms of Service</Link>
-                <Link to="/privacy" className="text-muted-foreground hover:text-primary text-sm" onClick={handleNav}>Privacy Policy</Link>
-              </div>
+    <>
+      {/* Hamburger button - shown on tablet (768px-899px) */}
+      <Button 
+        variant="ghost" 
+        size="icon" 
+        onClick={() => setIsOpen(true)}
+        className="[@media(min-width:768px)_and_(max-width:899px)]:flex hidden"
+      >
+        <Menu className="h-6 w-6" />
+      </Button>
+
+      {/* Menu overlay */}
+      {isOpen && (
+        <div className="fixed inset-0 bg-background z-50 overflow-y-auto">
+          <div className="flex flex-col h-full">
+            {/* Header */}
+            <div className="flex items-center justify-between p-4 border-b">
+              <h2 className="text-xl font-semibold">Menu</h2>
+              <Button variant="ghost" size="icon" onClick={handleClose}>
+                <X className="h-6 w-6" />
+              </Button>
             </div>
-          </>
-        ) : (
-          <div className="absolute bottom-6 left-0 w-full flex flex-col items-center gap-3">
-            <div className="flex flex-row items-center justify-center gap-4 w-full">
-              <Link to="/auth" className="w-20" onClick={handleNav}>
-                <Button className="w-full bg-blue-500 text-white hover:bg-blue-600">Sign In</Button>
+
+            {/* Menu Items */}
+            <div className="flex-1 p-4 space-y-2">
+              <Link to="/providers" onClick={handleClose} className="flex items-center gap-3 p-3 rounded-lg hover:bg-muted transition-colors">
+                <Users className="h-5 w-5" />
+                <span>Providers</span>
               </Link>
-              <Link to="/settings" className="w-12 h-12 flex items-center justify-center rounded-full bg-gray-200 text-gray-700" onClick={handleNav}>
-                <Settings className="h-6 w-6" />
+
+              <Link to="/how-it-works" onClick={handleClose} className="flex items-center gap-3 p-3 rounded-lg hover:bg-muted transition-colors">
+                <Info className="h-5 w-5" />
+                <span>How It Works</span>
               </Link>
-            </div>
-            <div className="flex flex-row items-center justify-center gap-4 w-full mt-2">
-              <Link to="/terms" className="text-muted-foreground hover:text-primary text-sm" onClick={handleNav}>Terms of Service</Link>
-              <Link to="/privacy" className="text-muted-foreground hover:text-primary text-sm" onClick={handleNav}>Privacy Policy</Link>
+
+              <Link to="/about" onClick={handleClose} className="flex items-center gap-3 p-3 rounded-lg hover:bg-muted transition-colors">
+                <Info className="h-5 w-5" />
+                <span>About</span>
+              </Link>
+
+              <Link to="/contact" onClick={handleClose} className="flex items-center gap-3 p-3 rounded-lg hover:bg-muted transition-colors">
+                <Phone className="h-5 w-5" />
+                <span>Contact</span>
+              </Link>
+
+              <Link to="/faqs" onClick={handleClose} className="flex items-center gap-3 p-3 rounded-lg hover:bg-muted transition-colors">
+                <HelpCircle className="h-5 w-5" />
+                <span>FAQs</span>
+              </Link>
+
+              <Link to="/help-center" onClick={handleClose} className="flex items-center gap-3 p-3 rounded-lg hover:bg-muted transition-colors">
+                <HelpCircle className="h-5 w-5" />
+                <span>Help Center</span>
+              </Link>
+
+              <Link to="/pricing" onClick={handleClose} className="flex items-center gap-3 p-3 rounded-lg hover:bg-muted transition-colors">
+                <DollarSign className="h-5 w-5" />
+                <span>Pricing</span>
+              </Link>
+
+              <Link to="/terms" onClick={handleClose} className="flex items-center gap-3 p-3 rounded-lg hover:bg-muted transition-colors">
+                <FileText className="h-5 w-5" />
+                <span>Terms of Service</span>
+              </Link>
+
+              <Link to="/privacy" onClick={handleClose} className="flex items-center gap-3 p-3 rounded-lg hover:bg-muted transition-colors">
+                <Shield className="h-5 w-5" />
+                <span>Privacy Policy</span>
+              </Link>
+
+              {isAuthenticated && (
+                <>
+                  <div className="border-t my-2 pt-2">
+                    <Link to="/dashboard" onClick={handleClose} className="flex items-center gap-3 p-3 rounded-lg hover:bg-muted transition-colors">
+                      <User className="h-5 w-5" />
+                      <span>Dashboard</span>
+                    </Link>
+
+                    <Link to="/settings" onClick={handleClose} className="flex items-center gap-3 p-3 rounded-lg hover:bg-muted transition-colors">
+                      <Settings className="h-5 w-5" />
+                      <span>Settings</span>
+                    </Link>
+                  </div>
+
+                  <button
+                    onClick={() => {
+                      handleSignOut();
+                      handleClose();
+                    }}
+                    className="flex items-center gap-3 p-3 rounded-lg hover:bg-muted transition-colors w-full text-left text-destructive"
+                  >
+                    <LogOut className="h-5 w-5" />
+                    <span>Sign Out</span>
+                  </button>
+                </>
+              )}
             </div>
           </div>
-        )}
-      </div>
-    </div>
+        </div>
+      )}
+    </>
   );
 };
 
