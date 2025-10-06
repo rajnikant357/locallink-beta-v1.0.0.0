@@ -29,6 +29,7 @@ import NotFound from "./pages/NotFound";
 import Chatbot from "./pages/Chatbot";
 import MyBookings from "./pages/MyBookings";
 import ChatbotButton from "@/components/ChatbotButton"; // Import the ChatbotButton component
+import BottomNavbar from "@/components/BottomNavbar";
 import { useLocation } from "react-router-dom";
 
 const queryClient = new QueryClient();
@@ -75,6 +76,7 @@ const App = () => {
             {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
             <Route path="*" element={<NotFound />} />
           </Routes>
+          <BottomNavbar />
         </BrowserRouter>
       </AuthProvider>
     </TooltipProvider>
