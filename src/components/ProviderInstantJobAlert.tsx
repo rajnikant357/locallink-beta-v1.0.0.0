@@ -1,4 +1,5 @@
 import { useState, useEffect } from "react";
+import { useIsMobile } from "@/hooks/use-mobile";
 import { Card, CardContent } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
@@ -32,6 +33,7 @@ const ProviderInstantJobAlert = ({
   const [slidePosition, setSlidePosition] = useState(0);
   const [isDragging, setIsDragging] = useState(false);
   const [startX, setStartX] = useState(0);
+  const isMobile = useIsMobile();
 
   useEffect(() => {
     const timer = setInterval(() => {
@@ -132,53 +134,55 @@ const ProviderInstantJobAlert = ({
             </div>
           </div>
 
-          {/* Slide to Accept/Reject */}
-          <div className="relative">
-            <div className="bg-muted rounded-full p-1 relative overflow-hidden h-16 flex items-center justify-between">
-              <span className={`font-semibold px-6 ${slidePosition < -100 ? "text-red-600" : "text-muted-foreground"}`}>Slide to Reject</span>
-              <div
-                className={`h-14 w-14 rounded-full flex items-center justify-center cursor-grab active:cursor-grabbing transition-colors ${
-                  slidePosition > 100
-                    ? "bg-green-500"
-                    : slidePosition < -100
-                    ? "bg-red-500"
-                    : "bg-primary"
-                }`}
-                style={{
-                  transform: `translateX(${slidePosition}px)`,
-                  position: "relative",
-                  zIndex: 10,
-                }}
-                onMouseDown={handleTouchStart}
-                onMouseMove={handleTouchMove}
-                onMouseUp={handleTouchEnd}
-                onMouseLeave={handleTouchEnd}
-                onTouchStart={handleTouchStart}
-                onTouchMove={handleTouchMove}
-                onTouchEnd={handleTouchEnd}
-              >
-                <Zap className="h-6 w-6 text-white" />
+          {/* Mobile: Show slider only */}
+          {isMobile ? (
+            <div className="relative">
+              <div className="bg-muted rounded-full p-1 relative overflow-hidden h-16 flex items-center justify-between">
+                <span className={`font-semibold px-6 ${slidePosition < -100 ? "text-red-600" : "text-muted-foreground"}`}>Slide to Reject</span>
+                <div
+                  className={`h-14 w-14 rounded-full flex items-center justify-center cursor-grab active:cursor-grabbing transition-colors ${
+                    slidePosition > 100
+                      ? "bg-green-500"
+                      : slidePosition < -100
+                      ? "bg-red-500"
+                      : "bg-primary"
+                  }`}
+                  style={{
+                    transform: `translateX(${slidePosition}px)`,
+                    position: "relative",
+                    zIndex: 10,
+                  }}
+                  onMouseDown={handleTouchStart}
+                  onMouseMove={handleTouchMove}
+                  onMouseUp={handleTouchEnd}
+                  onMouseLeave={handleTouchEnd}
+                  onTouchStart={handleTouchStart}
+                  onTouchMove={handleTouchMove}
+                  onTouchEnd={handleTouchEnd}
+                >
+                  <Zap className="h-6 w-6 text-white" />
+                </div>
+                <span className={`font-semibold px-6 ${slidePosition > 100 ? "text-green-600" : "text-muted-foreground"}`}>Slide to Accept</span>
               </div>
-              <span className={`font-semibold px-6 ${slidePosition > 100 ? "text-green-600" : "text-muted-foreground"}`}>Slide to Accept</span>
             </div>
-          </div>
-
-          {/* Alternative Buttons */}
-          <div className="flex gap-2 pt-2">
-            <Button
-              variant="outline"
-              className="flex-1 border-red-500 text-red-500 hover:bg-red-50 dark:hover:bg-red-950/20 hover:text-red-500"
-              onClick={onReject}
-            >
-              Reject
-            </Button>
-            <Button
-              className="flex-1 bg-green-500 hover:bg-green-600"
-              onClick={onAccept}
-            >
-              Accept Job
-            </Button>
-          </div>
+          ) : (
+            // Desktop: Show buttons only
+            <div className="flex gap-2 pt-2">
+              <Button
+                variant="outline"
+                className="flex-1 border-red-500 text-red-500 hover:bg-red-50 dark:hover:bg-red-950/20 hover:text-red-500"
+                onClick={onReject}
+              >
+                Reject
+              </Button>
+              <Button
+                className="flex-1 bg-green-500 hover:bg-green-600"
+                onClick={onAccept}
+              >
+                Accept Job
+              </Button>
+            </div>
+          )}
         </CardContent>
       </Card>
     </div>

@@ -17,41 +17,41 @@ const ChatbotButton: React.FC = () => {
         onClick={() => setOpen((o) => !o)}
         style={{
           position: "fixed",
-          bottom: 24,
-          right: 24,
+          bottom: 54,
+          right: 16,
           zIndex: 1000,
           background: "#2563eb",
           color: "white",
-          borderRadius: 24,
-          minWidth: 140,
-          height: 52,
+          borderRadius: 18,
+          minWidth: 90,
+          height: 36,
           boxShadow: "0 2px 8px rgba(0,0,0,0.15)",
           border: "none",
           cursor: "pointer",
-          fontSize: 18,
+          fontSize: 13,
           display: "flex",
           alignItems: "center",
           justifyContent: "center",
-          padding: "0 20px",
+          padding: "0 12px",
           fontWeight: "bold",
-          gap: 8,
+          gap: 6,
         }}
         aria-label="Open chatbot"
       >
-        <MessageSquare style={{ width: 22, height: 22, marginRight: 8 }} />
+        <MessageSquare style={{ width: 16, height: 16, marginRight: 6 }} />
         <span style={{ display: "inline-block", verticalAlign: "middle", lineHeight: "1" }}>Ask Toffy</span>
       </button>
       {open && (
         <div
           style={{
             position: "fixed",
-            bottom: 90,
-            right: 24,
+            bottom: 54,
+            right: 16,
             zIndex: 1000,
-            width: 360,
-            height: 440,
+            width: window.innerWidth < 768 ? 240 : 360,
+            height: window.innerWidth < 768 ? 320 : 440,
             background: "#fff",
-            borderRadius: 20,
+            borderRadius: 16,
             boxShadow: "0 4px 24px rgba(0,0,0,0.18)",
             display: "flex",
             flexDirection: "column",
@@ -64,14 +64,14 @@ const ChatbotButton: React.FC = () => {
             justifyContent: "space-between",
             background: "#2563eb",
             color: "#fff",
-            padding: "12px 20px 12px 16px",
-            borderTopLeftRadius: 20,
-            borderTopRightRadius: 20,
+            padding: window.innerWidth < 768 ? "8px 12px 8px 10px" : "12px 20px 12px 16px",
+            borderTopLeftRadius: 16,
+            borderTopRightRadius: 16,
             fontWeight: "bold",
-            fontSize: 18,
+            fontSize: window.innerWidth < 768 ? 14 : 18,
           }}>
-            <span style={{ display: "flex", alignItems: "center", gap: 8 }}>
-              <MessageSquare style={{ width: 22, height: 22 }} />
+            <span style={{ display: "flex", alignItems: "center", gap: window.innerWidth < 768 ? 5 : 8 }}>
+              <MessageSquare style={{ width: window.innerWidth < 768 ? 14 : 22, height: window.innerWidth < 768 ? 14 : 22 }} />
               Ask Toffy
             </span>
             <button
@@ -79,7 +79,7 @@ const ChatbotButton: React.FC = () => {
               style={{
                 background: "transparent",
                 border: "none",
-                fontSize: 22,
+                fontSize: window.innerWidth < 768 ? 16 : 22,
                 cursor: "pointer",
                 color: "#fff",
                 marginLeft: 8,
@@ -89,11 +89,11 @@ const ChatbotButton: React.FC = () => {
               ×
             </button>
           </div>
-          <div style={{ flex: 1, overflowY: "auto", padding: "16px" }}>
+          <div style={{ flex: 1, overflowY: "auto", padding: window.innerWidth < 768 ? "8px" : "16px" }}>
             <p>Hello! How can I help you?</p>
             {/* Add your chatbot UI here */}
           </div>
-          <div style={{ display: "flex", gap: 8, padding: "12px 16px", borderTop: "1px solid #e5e7eb", background: "#f9fafb" }}>
+          <div style={{ display: "flex", gap: window.innerWidth < 768 ? 4 : 8, padding: window.innerWidth < 768 ? "8px 8px" : "12px 16px", borderTop: "1px solid #e5e7eb", background: "#f9fafb" }}>
             <input
               type="text"
               value={message}
@@ -101,11 +101,11 @@ const ChatbotButton: React.FC = () => {
               placeholder="Type your message..."
               style={{
                 flex: 1,
-                padding: 10,
-                borderRadius: 10,
+                padding: window.innerWidth < 768 ? 6 : 10,
+                borderRadius: window.innerWidth < 768 ? 7 : 10,
                 border: "1px solid #e5e7eb",
                 outline: "none",
-                fontSize: 16,
+                fontSize: window.innerWidth < 768 ? 12 : 16,
               }}
             />
             <button
@@ -115,10 +115,10 @@ const ChatbotButton: React.FC = () => {
                 color: "white",
                 border: "none",
                 borderRadius: 10,
-                padding: "0 20px",
+                padding: window.innerWidth < 768 ? "0 10px" : "0 20px",
                 cursor: "pointer",
                 fontWeight: "bold",
-                fontSize: 16,
+                fontSize: window.innerWidth < 768 ? 12 : 16,
               }}
               aria-label="Send message"
             >

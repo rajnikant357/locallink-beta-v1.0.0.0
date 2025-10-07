@@ -3,7 +3,7 @@ import { Facebook, Twitter, Instagram, Youtube, Mail, Phone } from "lucide-react
 
 const Footer = () => {
   return (
-    <footer className="bg-[#1f2937] text-white mt-20">
+    <footer className="bg-[#1f2937] text-white mt-20 hidden [@media(min-width:900px)]:block">
       <div className="container mx-auto px-4 py-12">
         <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
           {/* About section */}
