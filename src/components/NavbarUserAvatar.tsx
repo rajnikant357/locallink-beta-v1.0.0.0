@@ -22,7 +22,7 @@ export default function NavbarUserAvatar({ name, type }: NavbarUserAvatarProps) 
   }, [type]);
 
   return (
-    <Avatar className="h-9 w-9">
+    <Avatar className="h-7 w-7">
       <AvatarImage src={imageUrl} alt={name} />
       <AvatarFallback className="text-lg">{initials}</AvatarFallback>
     </Avatar>

@@ -89,7 +89,7 @@ const Navbar = () => {
                 </>
               ) : (
                 <Link to="/auth">
-                  <Button>Sign In</Button>
+                  <Button className="h-7 w-14 px-5 text-xs font-medium">Sign In</Button>
                 </Link>
               )}
               {/* Hamburger menu for tablet view (768px - 900px) */}

@@ -1,5 +1,5 @@
 import { Link, useNavigate } from "react-router-dom";
-import { X, User, Settings, LogOut, Info, HelpCircle, Phone, FileText, Shield, DollarSign, Users, Menu } from "lucide-react";
+import { X, User, Settings, LogOut, Info, HelpCircle, Phone, FileText, Shield, DollarSign, Users, Menu, CreditCard } from "lucide-react";
 import React from "react";
 
 interface MoreMenuProps {
@@ -75,6 +75,10 @@ const MoreMenu: React.FC<MoreMenuProps> = ({ isAuthenticated, user, handleSignOu
           <button onClick={() => handleNav("/pricing")} className="flex items-center gap-3 p-3 rounded-xl bg-muted/40 hover:bg-primary/10 transition-colors w-full text-left shadow-sm">
             <DollarSign className="h-5 w-5 text-primary" />
             <span className="font-medium text-primary">Pricing</span>
+          </button>
+              <button onClick={() => handleNav("/payment-methods")} className="flex items-center gap-3 p-3 rounded-xl bg-muted/40 hover:bg-primary/10 transition-colors w-full text-left shadow-sm">
+            <CreditCard className="h-5 w-5 text-primary" />
+            <span className="font-medium text-primary">Payment Methods</span>
           </button>
           <button onClick={() => handleNav("/terms")} className="flex items-center gap-3 p-3 rounded-xl bg-muted/40 hover:bg-primary/10 transition-colors w-full text-left shadow-sm">
             <FileText className="h-5 w-5 text-primary" />

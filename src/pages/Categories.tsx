@@ -90,9 +90,11 @@ const Categories = () => {
               <Link key={category.name} to={category.path}>
                 <Card className="hover:shadow-lg transition-all hover:-translate-y-1 h-full">
                   <CardContent className="p-6">
-                    <div className="relative w-12 h-12 mb-3 bg-category-bg rounded-full flex items-center justify-center">
-                      <category.icon className="h-6 w-6 text-category-icon" />
-                      <div className="absolute top-1/2 -translate-y-1/2 right-[-32px] flex items-center gap-2 bg-white rounded-full px-2 py-0.5 shadow text-[10px] font-semibold text-yellow-500 [@media(min-width:768px)]:hidden">
+                    <div className="flex items-center justify-between mb-3">
+                      <div className="relative w-12 h-12 bg-category-bg rounded-full flex items-center justify-center">
+                        <category.icon className="h-6 w-6 text-category-icon" />
+                      </div>
+                      <div className="flex items-center gap-1 text-[15px] font-semibold text-black-500 [@media(min-width:768px)]:hidden">
                         <Star className="h-3 w-3 fill-yellow-400 text-yellow-400" />
                         {category.rating}
                       </div>
