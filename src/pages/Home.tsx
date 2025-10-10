@@ -7,6 +7,8 @@ import { Badge } from "@/components/ui/badge";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import { useAuth } from "@/contexts/AuthContext";
+import LinkLoadingAnimation from "@/components/LinkLoadingAnimation";
+import { useState } from "react";
 
 const categories = [
 	{ icon: Zap, name: "Electrician", count: "48 providers", path: "/category/electrician" },
@@ -94,9 +96,19 @@ const providers = [
 
 const Home = () => {
 	const { user } = useAuth();
+	const [isLoading, setIsLoading] = useState(false);
+
+	const handleSearch = () => {
+		setIsLoading(true);
+		setTimeout(() => {
+			setIsLoading(false);
+		}, 3000);
+	};
+
 	return (
 		<div className="min-h-screen flex flex-col">
 			<Navbar />
+			{isLoading && <LinkLoadingAnimation />}
 
 			{/* Hero Section */}
 		<section className="bg-gradient-to-r from-[#467ae9ff] to-[#1d4ed8] text-primary-foreground py-12 md:py-20">
@@ -126,7 +138,7 @@ const Home = () => {
 									className="border-0 focus-visible:ring-0 focus-visible:ring-offset-0 text-sm md:text-base"
 								/>
 							</div>
-							<Button size="lg" className="md:w-auto h-10 md:h-11">
+							<Button size="lg" className="md:w-auto h-10 md:h-11" onClick={handleSearch}>
 								Search
 							</Button>
 						</div>
