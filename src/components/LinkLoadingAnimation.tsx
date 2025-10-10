@@ -1,40 +1,67 @@
 const LinkLoadingAnimation = () => {
   return (
     <div className="fixed inset-0 bg-background/80 backdrop-blur-sm z-50 flex items-center justify-center">
-      <div className="relative w-64 h-32">
-        {/* Left circle */}
-        <div className="absolute left-8 top-1/2 -translate-y-1/2">
-          <div className="w-12 h-12 rounded-full bg-primary animate-pulse" />
-        </div>
+      <div className="relative flex flex-col items-center gap-8">
+        <svg width="280" height="120" viewBox="0 0 280 120" className="chain-link">
+          {/* Left chain link */}
+          <g className="left-link">
+            <ellipse cx="60" cy="60" rx="35" ry="50" fill="none" stroke="hsl(var(--primary))" strokeWidth="8" />
+            <rect x="52" y="15" width="16" height="12" fill="hsl(var(--primary))" rx="2" />
+            <rect x="52" y="93" width="16" height="12" fill="hsl(var(--primary))" rx="2" />
+          </g>
 
-        {/* Right circle */}
-        <div className="absolute right-8 top-1/2 -translate-y-1/2">
-          <div className="w-12 h-12 rounded-full bg-primary animate-pulse animation-delay-300" />
-        </div>
+          {/* Right chain link */}
+          <g className="right-link">
+            <ellipse cx="220" cy="60" rx="35" ry="50" fill="none" stroke="hsl(var(--primary))" strokeWidth="8" />
+            <rect x="212" y="15" width="16" height="12" fill="hsl(var(--primary))" rx="2" />
+            <rect x="212" y="93" width="16" height="12" fill="hsl(var(--primary))" rx="2" />
+          </g>
 
-        {/* Connecting line animation */}
-        <div className="absolute left-14 top-1/2 -translate-y-1/2 h-1 bg-primary origin-left animate-[scale-x_1.5s_ease-in-out_infinite]" 
-             style={{ width: '152px' }} />
+          {/* Middle connecting piece with animation */}
+          <g className="connector-piece">
+            <ellipse cx="140" cy="60" rx="45" ry="20" fill="none" stroke="hsl(var(--primary))" strokeWidth="8" className="connector-animate" />
+            <rect x="132" y="45" width="16" height="12" fill="hsl(var(--primary))" rx="2" className="connector-animate" />
+            <rect x="132" y="63" width="16" height="12" fill="hsl(var(--primary))" rx="2" className="connector-animate" />
+          </g>
+        </svg>
 
         {/* Text */}
-        <div className="absolute -bottom-8 left-1/2 -translate-x-1/2 text-center">
+        <div className="text-center">
           <p className="text-sm font-medium text-foreground">Connecting you to providers...</p>
         </div>
       </div>
 
       <style>{`
-        @keyframes scale-x {
+        .connector-animate {
+          animation: pulse-glow 1.5s ease-in-out infinite;
+        }
+        
+        @keyframes pulse-glow {
           0%, 100% {
-            transform: scaleX(0);
-            opacity: 0.5;
+            opacity: 0.4;
+            filter: drop-shadow(0 0 2px hsl(var(--primary)));
           }
           50% {
-            transform: scaleX(1);
             opacity: 1;
+            filter: drop-shadow(0 0 8px hsl(var(--primary)));
           }
         }
-        .animation-delay-300 {
-          animation-delay: 300ms;
+
+        .left-link, .right-link {
+          animation: subtle-pulse 2s ease-in-out infinite;
+        }
+
+        .right-link {
+          animation-delay: 0.3s;
+        }
+
+        @keyframes subtle-pulse {
+          0%, 100% {
+            opacity: 0.7;
+          }
+          50% {
+            opacity: 1;
+          }
         }
       `}</style>
     </div>
