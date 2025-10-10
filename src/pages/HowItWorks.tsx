@@ -8,79 +8,79 @@ const HowItWorks = () => {
     <div className="min-h-screen flex flex-col">
       <Navbar />
       
-      <div className="flex-1">
+      <div className="flex-1 pb-24 md:pb-0">
         {/* Hero */}
-  <section className="bg-gradient-to-r from-[#467ae9ff] to-[#1d4ed8] text-primary-foreground py-16">
-          <div className="container mx-auto px-4 text-center">
-            <h1 className="text-4xl md:text-5xl font-bold mb-4">How LocalLink Works</h1>
-            <p className="text-lg md:text-xl opacity-90 max-w-2xl mx-auto">
+  <section className="bg-gradient-to-r from-[#467ae9ff] to-[#1d4ed8] text-primary-foreground py-10 md:py-16">
+          <div className="container mx-auto px-3 md:px-4 text-center">
+            <h1 className="text-3xl md:text-4xl lg:text-5xl font-bold mb-3 md:mb-4">How LocalLink Works</h1>
+            <p className="text-base md:text-lg lg:text-xl opacity-90 max-w-2xl mx-auto">
               Connecting you with trusted local service providers in just a few simple steps
             </p>
           </div>
         </section>
 
         {/* Steps */}
-        <section className="py-16 bg-background">
-          <div className="container mx-auto px-4">
-            <div className="max-w-4xl mx-auto space-y-12">
-              <div className="flex flex-col md:flex-row gap-6 items-start">
-                <div className="w-16 h-16 bg-primary/10 rounded-full flex items-center justify-center flex-shrink-0">
-                  <span className="text-3xl font-bold text-primary">1</span>
+        <section className="py-8 md:py-16 bg-background">
+          <div className="container mx-auto px-3 md:px-4">
+            <div className="max-w-4xl mx-auto space-y-8 md:space-y-12">
+              <div className="flex flex-col md:flex-row gap-4 md:gap-6 items-start">
+                <div className="w-14 h-14 md:w-16 md:h-16 bg-primary/10 rounded-full flex items-center justify-center flex-shrink-0">
+                  <span className="text-2xl md:text-3xl font-bold text-primary">1</span>
                 </div>
                 <div className="flex-1">
-                  <h3 className="text-2xl font-bold mb-3 flex items-center gap-2">
-                    <Search className="h-6 w-6 text-primary" />
+                  <h3 className="text-xl md:text-2xl font-bold mb-2 md:mb-3 flex items-center gap-2">
+                    <Search className="h-5 w-5 md:h-6 md:w-6 text-primary" />
                     Search for Services
                   </h3>
-                  <p className="text-muted-foreground text-lg leading-relaxed">
+                  <p className="text-muted-foreground text-sm md:text-lg leading-relaxed">
                     Browse through our service categories or use the search bar to find exactly what you need. 
                     Filter by location, availability, price range, and ratings to narrow down your options.
                   </p>
                 </div>
               </div>
 
-              <div className="flex flex-col md:flex-row gap-6 items-start">
-                <div className="w-16 h-16 bg-primary/10 rounded-full flex items-center justify-center flex-shrink-0">
-                  <span className="text-3xl font-bold text-primary">2</span>
+              <div className="flex flex-col md:flex-row gap-4 md:gap-6 items-start">
+                <div className="w-14 h-14 md:w-16 md:h-16 bg-primary/10 rounded-full flex items-center justify-center flex-shrink-0">
+                  <span className="text-2xl md:text-3xl font-bold text-primary">2</span>
                 </div>
                 <div className="flex-1">
-                  <h3 className="text-2xl font-bold mb-3 flex items-center gap-2">
-                    <Users className="h-6 w-6 text-primary" />
+                  <h3 className="text-xl md:text-2xl font-bold mb-2 md:mb-3 flex items-center gap-2">
+                    <Users className="h-5 w-5 md:h-6 md:w-6 text-primary" />
                     Compare Providers
                   </h3>
-                  <p className="text-muted-foreground text-lg leading-relaxed">
+                  <p className="text-muted-foreground text-sm md:text-lg leading-relaxed">
                     View detailed profiles of service providers including their ratings, reviews, skills, 
                     experience, and pricing. Compare multiple providers to find the perfect match for your needs.
                   </p>
                 </div>
               </div>
 
-              <div className="flex flex-col md:flex-row gap-6 items-start">
-                <div className="w-16 h-16 bg-primary/10 rounded-full flex items-center justify-center flex-shrink-0">
-                  <span className="text-3xl font-bold text-primary">3</span>
+              <div className="flex flex-col md:flex-row gap-4 md:gap-6 items-start">
+                <div className="w-14 h-14 md:w-16 md:h-16 bg-primary/10 rounded-full flex items-center justify-center flex-shrink-0">
+                  <span className="text-2xl md:text-3xl font-bold text-primary">3</span>
                 </div>
                 <div className="flex-1">
-                  <h3 className="text-2xl font-bold mb-3 flex items-center gap-2">
-                    <Calendar className="h-6 w-6 text-primary" />
+                  <h3 className="text-xl md:text-2xl font-bold mb-2 md:mb-3 flex items-center gap-2">
+                    <Calendar className="h-5 w-5 md:h-6 md:w-6 text-primary" />
                     Book & Schedule
                   </h3>
-                  <p className="text-muted-foreground text-lg leading-relaxed">
+                  <p className="text-muted-foreground text-sm md:text-lg leading-relaxed">
                     Book instantly if the provider is available now, or schedule an appointment for a 
                     convenient time. You can also request quotes and discuss your requirements before booking.
                   </p>
                 </div>
               </div>
 
-              <div className="flex flex-col md:flex-row gap-6 items-start">
-                <div className="w-16 h-16 bg-primary/10 rounded-full flex items-center justify-center flex-shrink-0">
-                  <span className="text-3xl font-bold text-primary">4</span>
+              <div className="flex flex-col md:flex-row gap-4 md:gap-6 items-start">
+                <div className="w-14 h-14 md:w-16 md:h-16 bg-primary/10 rounded-full flex items-center justify-center flex-shrink-0">
+                  <span className="text-2xl md:text-3xl font-bold text-primary">4</span>
                 </div>
                 <div className="flex-1">
-                  <h3 className="text-2xl font-bold mb-3 flex items-center gap-2">
-                    <MessageSquare className="h-6 w-6 text-primary" />
+                  <h3 className="text-xl md:text-2xl font-bold mb-2 md:mb-3 flex items-center gap-2">
+                    <MessageSquare className="h-5 w-5 md:h-6 md:w-6 text-primary" />
                     Connect Directly
                   </h3>
-                  <p className="text-muted-foreground text-lg leading-relaxed">
+                  <p className="text-muted-foreground text-sm md:text-lg leading-relaxed">
                     Communicate directly with the service provider through our platform. Discuss details, 
                     clarify requirements, and coordinate the service at your convenience.
                   </p>
@@ -91,42 +91,42 @@ const HowItWorks = () => {
         </section>
 
         {/* Features */}
-        <section className="py-16 bg-muted/30">
-          <div className="container mx-auto px-4">
-            <h2 className="text-3xl font-bold text-center mb-12">Why Choose LocalLink?</h2>
+        <section className="py-8 md:py-16 bg-muted/30">
+          <div className="container mx-auto px-3 md:px-4">
+            <h2 className="text-2xl md:text-3xl font-bold text-center mb-6 md:mb-12">Why Choose LocalLink?</h2>
             
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-5xl mx-auto">
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-4 md:gap-8 max-w-5xl mx-auto">
               <Card>
-                <CardContent className="p-6 text-center">
-                  <div className="w-16 h-16 mx-auto mb-4 bg-primary/10 rounded-full flex items-center justify-center">
-                    <Shield className="h-8 w-8 text-primary" />
+                <CardContent className="p-4 md:p-6 text-center">
+                  <div className="w-14 h-14 md:w-16 md:h-16 mx-auto mb-3 md:mb-4 bg-primary/10 rounded-full flex items-center justify-center">
+                    <Shield className="h-7 w-7 md:h-8 md:w-8 text-primary" />
                   </div>
-                  <h3 className="text-xl font-semibold mb-2">Verified Providers</h3>
-                  <p className="text-muted-foreground">
+                  <h3 className="text-lg md:text-xl font-semibold mb-2">Verified Providers</h3>
+                  <p className="text-muted-foreground text-sm md:text-base">
                     All service providers are verified and background-checked for your safety and peace of mind
                   </p>
                 </CardContent>
               </Card>
 
               <Card>
-                <CardContent className="p-6 text-center">
-                  <div className="w-16 h-16 mx-auto mb-4 bg-primary/10 rounded-full flex items-center justify-center">
-                    <Star className="h-8 w-8 text-primary" />
+                <CardContent className="p-4 md:p-6 text-center">
+                  <div className="w-14 h-14 md:w-16 md:h-16 mx-auto mb-3 md:mb-4 bg-primary/10 rounded-full flex items-center justify-center">
+                    <Star className="h-7 w-7 md:h-8 md:w-8 text-primary" />
                   </div>
-                  <h3 className="text-xl font-semibold mb-2">Trusted Reviews</h3>
-                  <p className="text-muted-foreground">
+                  <h3 className="text-lg md:text-xl font-semibold mb-2">Trusted Reviews</h3>
+                  <p className="text-muted-foreground text-sm md:text-base">
                     Read authentic reviews from real customers to make informed decisions
                   </p>
                 </CardContent>
               </Card>
 
               <Card>
-                <CardContent className="p-6 text-center">
-                  <div className="w-16 h-16 mx-auto mb-4 bg-primary/10 rounded-full flex items-center justify-center">
-                    <Calendar className="h-8 w-8 text-primary" />
+                <CardContent className="p-4 md:p-6 text-center">
+                  <div className="w-14 h-14 md:w-16 md:h-16 mx-auto mb-3 md:mb-4 bg-primary/10 rounded-full flex items-center justify-center">
+                    <Calendar className="h-7 w-7 md:h-8 md:w-8 text-primary" />
                   </div>
-                  <h3 className="text-xl font-semibold mb-2">Easy Scheduling</h3>
-                  <p className="text-muted-foreground">
+                  <h3 className="text-lg md:text-xl font-semibold mb-2">Easy Scheduling</h3>
+                  <p className="text-muted-foreground text-sm md:text-base">
                     Book instantly or schedule for later with our flexible booking system
                   </p>
                 </CardContent>
