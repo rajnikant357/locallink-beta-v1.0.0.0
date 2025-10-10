@@ -43,11 +43,7 @@ const Providers = () => {
             </p>
           </div>
 
-<<<<<<< HEAD
-          <div className="grid grid-cols-2 md:grid-cols-2 lg:grid-cols-3 gap-6">
-=======
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-3 md:gap-6">
->>>>>>> e3ba037407b8fff6736805a8096f2671d687f120
+          <div className="grid grid-cols-2 md:grid-cols-2 lg:grid-cols-3 gap-3 md:gap-6">
             {allProviders.map((provider) => (
               <Card key={provider.name} className="hover:shadow-lg transition-shadow">
                 <CardContent className="p-4 md:p-6">
