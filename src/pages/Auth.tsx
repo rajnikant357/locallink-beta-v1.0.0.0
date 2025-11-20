@@ -20,7 +20,8 @@ const Auth = () => {
     phone: "",
     email: "", 
     password: "", 
-    confirmPassword: ""
+    confirmPassword: "",
+    type: "customer" as "customer" | "provider"
   });
   const [showSignInPassword, setShowSignInPassword] = useState(false);
   const [showSignUpPassword, setShowSignUpPassword] = useState(false);
@@ -36,9 +37,9 @@ const Auth = () => {
     e.preventDefault();
     setIsLoading(true);
 
-    const success = await signIn(signInData.email, signInData.password);
+    const { error } = await signIn(signInData.email, signInData.password);
     
-    if (success) {
+    if (!error) {
       toast({
         title: "Welcome back!",
         description: "You have successfully signed in.",
@@ -46,8 +47,8 @@ const Auth = () => {
       navigate("/dashboard");
     } else {
       toast({
-        title: "Invalid credentials",
-        description: "Please check your email and password.",
+        title: "Sign in failed",
+        description: error.message || "Please check your credentials.",
         variant: "destructive",
       });
     }
@@ -68,19 +69,26 @@ const Auth = () => {
 
     setIsLoading(true);
 
-    const success = await signUp(
+    const { error } = await signUp(
       signUpData.name,
       signUpData.phone,
       signUpData.email,
-      signUpData.password
+      signUpData.password,
+      signUpData.type
     );
 
-    if (success) {
+    if (!error) {
       toast({
         title: "Account created!",
         description: "Your account has been created successfully.",
       });
       navigate("/dashboard");
+    } else {
+      toast({
+        title: "Sign up failed",
+        description: error.message || "Please try again.",
+        variant: "destructive",
+      });
     }
     setIsLoading(false);
   };
@@ -242,6 +250,28 @@ const Auth = () => {
                         onClick={() => setShowConfirmPassword(!showConfirmPassword)}
                       >
                         {showConfirmPassword ? <EyeOff className="h-4 w-4" /> : <Eye className="h-4 w-4" />}
+                      </Button>
+                    </div>
+                  </div>
+
+                  <div>
+                    <Label htmlFor="user-type">I am a</Label>
+                    <div className="flex gap-4 mt-2">
+                      <Button
+                        type="button"
+                        variant={signUpData.type === "customer" ? "default" : "outline"}
+                        className="flex-1"
+                        onClick={() => setSignUpData({...signUpData, type: "customer"})}
+                      >
+                        Customer
+                      </Button>
+                      <Button
+                        type="button"
+                        variant={signUpData.type === "provider" ? "default" : "outline"}
+                        className="flex-1"
+                        onClick={() => setSignUpData({...signUpData, type: "provider"})}
+                      >
+                        Service Provider
                       </Button>
                     </div>
                   </div>
