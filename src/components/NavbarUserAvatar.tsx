@@ -1,10 +1,12 @@
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { useEffect, useState } from "react";
 
-type NavbarUserAvatarProps = { name: string; type: "customer" | "provider" };
+type NavbarUserAvatarProps = { name: string; type: "customer" | "provider" | "admin" };
 
-function getLocalKey(type: "customer" | "provider") {
-  return type === "provider" ? "locallink_profile_photo_provider" : "locallink_profile_photo_user";
+function getLocalKey(type: "customer" | "provider" | "admin") {
+  if (type === "provider") return "locallink_profile_photo_provider";
+  if (type === "admin") return "locallink_profile_photo_admin";
+  return "locallink_profile_photo_user";
 }
 
 export default function NavbarUserAvatar({ name, type }: NavbarUserAvatarProps) {

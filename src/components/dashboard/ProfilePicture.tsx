@@ -5,12 +5,15 @@ import { Button } from "@/components/ui/button";
 
 interface ProfilePictureProps {
   name: string;
-  type: "customer" | "provider";
+  type: "customer" | "provider" | "admin";
   editable?: boolean;
 }
 
-const getLocalKey = (type: "customer" | "provider") =>
-  type === "provider" ? "locallink_profile_photo_provider" : "locallink_profile_photo_user";
+const getLocalKey = (type: "customer" | "provider" | "admin") => {
+  if (type === "provider") return "locallink_profile_photo_provider";
+  if (type === "admin") return "locallink_profile_photo_admin";
+  return "locallink_profile_photo_user";
+};
 
 const ProfilePicture = ({ name, type, editable = false }: ProfilePictureProps) => {
   const initials = name
